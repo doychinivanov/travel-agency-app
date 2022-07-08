@@ -1,0 +1,71 @@
+.card-container {
+    float: left;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: calc(90% / 3);
+    min-width: 23rem;
+    max-width: 30rem;
+    box-sizing: border-box;
+    box-shadow: 0rem 0.3rem 1rem #00000029;
+    margin: 2rem 1rem;
+    transition: transform 0.2s;
+    font-size: 1.5rem;
+    overflow: hidden;
+}
+
+.card-img-container {
+    background-position: center;
+    background-repeat: no-repeat;
+    flex: 0 1 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 16rem;
+    opacity: 0.6;
+}
+
+.card-img-container:hover {
+    opacity: 1;
+    transition: opacity .4s ease;
+    -webkit-transition: opacity .4s ease;
+    -moz-transition: opacity .4s ease;
+    transition: transform 0.4s ease;
+    transform: scale(1.1);
+}
+
+.card-img-container img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;  
+    object-position: 50% 10%;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+    height: 10rem;
+    align-items: center;
+    background-color: #2E4C50;
+}
+
+.card-destination {
+    text-align: left;
+}
+
+.card-destination .destination {
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+.card-destination .title {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.2rem;
+}
+
+.card-price .price-info {
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.4rem;
+}

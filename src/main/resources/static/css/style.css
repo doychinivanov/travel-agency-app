@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Roboto:wght@300;400;500;700;900&display=swap');
+
+@import url('./init.css');
+
+@import url('./navigation.css');
+
+@import url('./parallax.css');
+
+@import url('./card.css');
+
+@import url('./form.css');
+
+@import url('./common.css');
+
+@import url('./carousel.css');
+
+@import url('./footer.css');
+
+@import url('./home-search.css');
+
+
+.page-wrapper {
+    width: 100%;
+    background: #0d1b1e;
+    min-height: 100vh;
+    z-index: 2;
+    position: absolute;
+    width: 100vw;
+}
+
+.content {
+    width: 90%;
+    margin: auto;
+}
+
+
+.content-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 60vh;
+    max-width: 160rem;
+    flex-wrap: wrap;
+}
+
+.text {
+    padding: 2rem 20rem;
+    font-size: 1.1rem;
+}
+
+.bb {
+    margin-bottom: 20rem;
+}
+
+/*  */
+.holiday-type {
+    margin-top: 5rem;
+}
+
+.holiday-type .type-header {
+    text-align: center;
+    font-family: 'Roboto', 'sans-serif';
+    font-weight: 700;
+    font-size: 3rem;
+    margin-bottom: 1.5rem;
+}
+
+.holiday-type .type-description {
+    text-align: center;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    font-size: 1.8rem;
+}

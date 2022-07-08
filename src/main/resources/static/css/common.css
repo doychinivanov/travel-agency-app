@@ -1,0 +1,23 @@
+.pointer {
+    cursor: pointer;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    min-height: 5rem;
+}
+
+.anchor-reset {
+    text-decoration: none;
+}
+
+.pink {
+    color: #F2CEE6;
+}
+
+.dark-mint {
+    color: #8EDCE6;
+}
