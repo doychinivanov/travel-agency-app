@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,21 +16,11 @@
 <body>
 
 <section class="main">
-    <nav>
-        <a th:href="@{/auth/signup}" class="nav-button pink anchor-reset">Sign up</a>
-        <a th:href="@{/auth/login}" class="nav-button pink anchor-reset">Login</a>
-    </nav>
-
-    <div class="parallax-container">
-        <h2 class="main-title">
-            Explore<span class="pink">.</span>
-        </h2>
-        <img src="./imgs/bg.png" class="bg" alt="landscape-img" />
-        <img src="./imgs/front.png" class="front-img" alt="rock" />
-    </div>
+    <div sec:authorize="!isAuthenticated()" th:replace="fragments/parallax"></div>
 
     <span class="_scroll_target_"></span>
     <div class="page-wrapper">
+    <div sec:authorize="isAuthenticated()" th:replace="fragments/navigation"></div>
 
         <div class="content">
 
@@ -376,6 +366,6 @@
 ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/ScrollMagic.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.6/plugins/animation.gsap.js"></script>
-<script src="../js/parallax.js"></script>
+<script sec:authorize="!isAuthenticated()" src="../js/parallax.js"></script>
 </body>
 </html>

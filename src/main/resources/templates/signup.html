@@ -19,25 +19,53 @@
     <div class="page-wrapper">
         <div th:replace="fragments/navigation"></div>
 
-        <form class="basic-form">
+        <form
+                th:action="@{/auth/signup}"
+                th:method="post"
+                th:object="${registrationDTO}"
+                class="basic-form">
             <label class="input-label">
-                <input type="text" class="form-input" placeholder="Full Name *" />
-                <p class="err-label">Your name must be at least 2 characters long!</p>
+                <input
+                        th:field="*{fullName}"
+                        id="fullName"
+                        name="fullName"
+                        type="text"
+                        class="form-input"
+                        placeholder="Full Name *" />
+                <p th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="err-label"></p>
             </label>
 
             <label class="input-label">
-                <input type="email" class="form-input" placeholder="Email Address *" />
-                <p class="err-label"></p>
+                <input
+                        th:field="*{email}"
+                        id="email"
+                        name="email"
+                        type="email"
+                        class="form-input"
+                        placeholder="Email Address *" />
+                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="err-label"></p>
             </label>
 
             <label class="input-label">
-                <input type="password" class="form-input" placeholder="Password *" />
-                <p class="err-label"></p>
+                <input
+                        th:field="*{password}"
+                        id="password"
+                        name="password"
+                        type="password"
+                        class="form-input"
+                        placeholder="Password *" />
+                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="err-label"></p>
             </label>
 
             <label class="input-label">
-                <input type="password" class="form-input" placeholder="Confirm Password *" />
-                <p class="err-label"></p>
+                <input
+                        th:field="*{confirmPass}"
+                        id="confirmPass"
+                        name="confirmPass"
+                        type="password"
+                        class="form-input"
+                        placeholder="Confirm Password *" />
+                <p th:if="${#fields.hasErrors('confirmPass')}" th:errors="*{confirmPass}" class="err-label"></p>
             </label>
 
             <label class="input-label">

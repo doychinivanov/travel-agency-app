@@ -1,17 +1,35 @@
 package com.travelapp.web;
 
-import com.travelapp.models.dto.LoginDto;
+import com.travelapp.models.dto.RegisterDto;
+import com.travelapp.service.AuthService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.validation.Valid;
+import java.util.Arrays;
+
 @Controller
 @RequestMapping("/auth")
 public class AuthController {
+
+    private AuthService authService;
+
+    @Autowired
+    public AuthController(AuthService authService) {
+        this.authService = authService;
+    }
+
+    @ModelAttribute("registrationDTO")
+    public RegisterDto initRegistrationDto() {
+        return new RegisterDto();
+    }
 
     @GetMapping("/login")
     public String getLogin() {
@@ -34,5 +52,20 @@ public class AuthController {
                 true);
 
         return "redirect:/auth/login";
+    }
+
+    @PostMapping("/signup")
+    public String registerUser(@Valid RegisterDto registrationDTO,
+                               BindingResult bindingResult,
+                               RedirectAttributes redirectAttributes) {
+
+        if (bindingResult.hasErrors() || !this.authService.signup(registrationDTO)) {
+            redirectAttributes.addFlashAttribute("registrationDTO", registrationDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registrationDTO", bindingResult);
+
+            return "redirect:/auth/signup";
+        }
+
+        return "redirect:/";
     }
 }
