@@ -32,7 +32,7 @@
                         type="text"
                         class="form-input"
                         placeholder="Full Name *" />
-                <p th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}" class="err-label"></p>
+                <p th:each="err : ${#fields.errors('fullName')}" th:text="${err}" class="err-label" />
             </label>
 
             <label class="input-label">
@@ -43,7 +43,8 @@
                         type="email"
                         class="form-input"
                         placeholder="Email Address *" />
-                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="err-label"></p>
+                <p th:each="err : ${#fields.errors('email')}" th:text="${err}" class="err-label" />
+                <p th:if="${emailTaken}" th:text="${emailTaken}" class="err-label"></p>
             </label>
 
             <label class="input-label">
@@ -54,7 +55,7 @@
                         type="password"
                         class="form-input"
                         placeholder="Password *" />
-                <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="err-label"></p>
+                <p th:each="err : ${#fields.errors('password')}" th:text="${err}" class="err-label" />
             </label>
 
             <label class="input-label">
@@ -65,7 +66,7 @@
                         type="password"
                         class="form-input"
                         placeholder="Confirm Password *" />
-                <p th:if="${#fields.hasErrors('confirmPass')}" th:errors="*{confirmPass}" class="err-label"></p>
+                <p th:if="${confirmPassNotMatching}" class="err-label">Passwords don't match</p>
             </label>
 
             <label class="input-label">

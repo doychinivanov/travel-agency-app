@@ -32,23 +32,21 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public boolean signup(RegisterDto registerDto) {
+    public void signup(RegisterDto registerDto) throws Exception {
         Optional<UserEntity> existingUser = this.userRepository.findByEmail(registerDto.getEmail());
 
         if (existingUser.isPresent()) {
-            return false;
+            throw new Exception("A user with that email already exists.");
         }
 
         registerDto.setPassword(passwordEncoder.encode(registerDto.getPassword()));
         UserEntity newUser = this.modelMapper.map(registerDto, UserEntity.class);
         this.userRepository.save(newUser);
         login(newUser);
-        return true;
     }
 
     private void login(UserEntity userEntity) {
-        UserDetails userDetails =
-                userDetailsService.loadUserByUsername(userEntity.getEmail());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(userEntity.getEmail());
 
         Authentication auth =
                 new UsernamePasswordAuthenticationToken(

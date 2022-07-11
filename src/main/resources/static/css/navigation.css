@@ -53,3 +53,8 @@ nav {
     font-size: 1.5rem;
     margin-right: 1.3rem;
 }
+
+.logout-input {
+    background-color: transparent;
+    border: none;
+}

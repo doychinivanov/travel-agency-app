@@ -13,9 +13,11 @@
                 <a sec:authorize="!isAuthenticated()" class="nav-link" th:href="@{/auth/signup}">Sign up</a>
 
                 <a sec:authorize="isAuthenticated()" class="nav-link" th:href="@{/auth/signup}">My Trips</a>
-                <form sec:authorize="isAuthenticated()" class="nav-link" th:action="@{/auth/logout}" th:method="post">
-                    <input class="nav-link" type="submit" value="Logout">
-                </form>
+                <span class="nav-link">
+                    <form sec:authorize="isAuthenticated()" th:action="@{/auth/logout}" th:method="post">
+                        <input class="logout-input" type="submit" value="Logout">
+                    </form>
+                </span>
             </div>
         </div>
     </div>

@@ -32,8 +32,9 @@ public class ApplicationConfig {
         http
                 .authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .antMatchers("/", "/auth/login", "/auth/signup").permitAll()
+                .antMatchers("/", "/auth/login", "/auth/signup").anonymous()
                 .antMatchers("/admin/dashboard").hasRole(UserRoleEnum.ADMIN.name())
+                .antMatchers("/trip/create").hasAnyRole(UserRoleEnum.ADMIN.name(), UserRoleEnum.MODERATOR.name())
                 .and()
                 .formLogin()
                 .loginPage("/auth/login")

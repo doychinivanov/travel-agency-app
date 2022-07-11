@@ -48,8 +48,7 @@ public class AuthController {
             RedirectAttributes redirectAttributes) {
 
         redirectAttributes.addFlashAttribute(UsernamePasswordAuthenticationFilter.SPRING_SECURITY_FORM_USERNAME_KEY, userName);
-        redirectAttributes.addFlashAttribute("bad_credentials",
-                true);
+        redirectAttributes.addFlashAttribute("bad_credentials", true);
 
         return "redirect:/auth/login";
     }
@@ -59,13 +58,26 @@ public class AuthController {
                                BindingResult bindingResult,
                                RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors() || !this.authService.signup(registrationDTO)) {
+        if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("registrationDTO", registrationDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registrationDTO", bindingResult);
+
+            if (bindingResult.hasGlobalErrors()) {
+                redirectAttributes.addFlashAttribute("confirmPassNotMatching", true);
+            }
 
             return "redirect:/auth/signup";
         }
 
-        return "redirect:/";
+        try {
+            this.authService.signup(registrationDTO);
+            return "redirect:/";
+        } catch (Exception err) {
+            redirectAttributes.addFlashAttribute("registrationDTO", registrationDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.registrationDTO", bindingResult);
+            redirectAttributes.addFlashAttribute("emailTaken", err.getMessage());
+            return "redirect:/auth/signup";
+        }
+
     }
 }

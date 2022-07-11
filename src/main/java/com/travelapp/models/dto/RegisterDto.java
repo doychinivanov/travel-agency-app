@@ -1,21 +1,24 @@
 package com.travelapp.models.dto;
 
+import com.travelapp.utils.validations.EqualPasswordsConstraint;
+
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+@EqualPasswordsConstraint(message = "Passwords don't match")
 public class RegisterDto {
 
+    @NotBlank(message = "This field is required!")
     @Size(min = 2, max = 50, message = "Your name must be between 2 and 50 characters long!")
-    @NotBlank(message = "Your name must be between 2 and 50 characters long!")
     private String fullName;
 
+    @NotBlank(message = "This field is required!")
     @Email(message = "Please, enter a valid email.")
-    @NotBlank(message = "Please, enter a valid email.")
     private String email;
 
+    @NotBlank(message = "This field is required!")
     @Size(min = 3, message = "Password must be at least 6 symbols.")
-    @NotBlank(message = "Password must be at least 6 symbols.")
     private String password;
 
     private String confirmPass;

@@ -4,5 +4,5 @@ import com.travelapp.models.dto.RegisterDto;
 
 public interface AuthService {
 
-    boolean signup(RegisterDto registerDto);
+    void signup(RegisterDto registerDto) throws Exception;
 }
