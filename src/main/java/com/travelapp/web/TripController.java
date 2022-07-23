@@ -1,6 +1,8 @@
 package com.travelapp.web;
 
+import com.travelapp.models.Country;
 import com.travelapp.models.dto.CreateTripDTO;
+import com.travelapp.service.CountryService;
 import com.travelapp.service.S3Service;
 import com.travelapp.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,10 +20,13 @@ public class TripController {
     private TripService tripService;
     private S3Service s3Service;
 
+    private CountryService countryService;
+
     @Autowired
-    public TripController(TripService tripService, S3Service s3Service) {
+    public TripController(TripService tripService, S3Service s3Service, CountryService countryService) {
         this.tripService = tripService;
         this.s3Service = s3Service;
+        this.countryService = countryService;
     }
 
     @ModelAttribute("createTripDto")
@@ -49,8 +54,10 @@ public class TripController {
         }
 
         try {
-            s3Service.uploadFile(file);
-            this.tripService.createTrip(createTripDTO);
+            String imgName = this.s3Service.uploadFile(file);
+            createTripDTO.setImg(imgName);
+            Country country = this.countryService.createCountry(createTripDTO.getCountry());
+            this.tripService.createTrip(createTripDTO, country);
         } catch (Exception err) {
             redirectAttributes.addFlashAttribute("failedToCreate", err.getMessage());
             return "redirect:/trip/create";

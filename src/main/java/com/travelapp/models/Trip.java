@@ -14,6 +14,17 @@ public class Trip {
     @Column(nullable = false)
     private String destination;
 
+    @ManyToOne
+    private Country country;
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
+
     @Column(nullable = false)
     private String highlight;
 
@@ -22,6 +33,17 @@ public class Trip {
 
     @Column(nullable = false)
     private int days;
+
+    @Column(name = "image", nullable = false)
+    private String img;
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;

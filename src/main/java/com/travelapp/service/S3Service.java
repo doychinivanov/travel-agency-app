@@ -4,7 +4,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public interface S3Service {
 
-    void uploadFile(MultipartFile file);
+    String uploadFile(MultipartFile file);
 
-    byte[] getFromS3(String path, String key);
+    byte[] getFromS3(String key);
 }

@@ -9,6 +9,9 @@ public class CreateTripDTO {
     private String destination;
 
     @NotBlank(message = "This field is required!")
+    private String country;
+
+    @NotBlank(message = "This field is required!")
     private String highlight;
     @Positive(message = "Price must be positive number!")
     @NotNull(message = "This field is required!")
@@ -21,18 +24,25 @@ public class CreateTripDTO {
     @NotBlank(message = "This field is required!")
     private String description;
 
-    @Override
-    public String toString() {
-        return "CreateTripDTO{" +
-                "destination='" + destination + '\'' +
-                ", highlight='" + highlight + '\'' +
-                ", price=" + price +
-                ", days=" + days +
-                ", description='" + description + '\'' +
-                '}';
-    }
+    private String img;
 
     public CreateTripDTO() {}
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 
     public String getDestination() {
         return destination;

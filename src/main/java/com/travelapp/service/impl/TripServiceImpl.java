@@ -1,5 +1,6 @@
 package com.travelapp.service.impl;
 
+import com.travelapp.models.Country;
 import com.travelapp.models.Trip;
 import com.travelapp.models.dto.CreateTripDTO;
 import com.travelapp.repositories.TripRepository;
@@ -21,8 +22,11 @@ public class TripServiceImpl implements TripService {
 
 
     @Override
-    public void createTrip(CreateTripDTO createTripDTO) throws Exception {
+    public void createTrip(CreateTripDTO createTripDTO, Country country) throws Exception {
         Trip newTrip = this.modelMapper.map(createTripDTO, Trip.class);
+
+        if (country != null) newTrip.setCountry(country);
+
         this.tripRepository.save(newTrip);
     }
 }

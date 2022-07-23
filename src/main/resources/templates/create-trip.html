@@ -27,6 +27,11 @@
             </label>
 
             <label class="input-label">
+                <input th:field="*{country}" type="text" name="country" class="form-input" placeholder="Country Destination *" />
+                <p th:each="err : ${#fields.errors('country')}" th:text="${err}" class="err-label" />
+            </label>
+
+            <label class="input-label">
                 <input th:field="*{highlight}" type="text" name="highlight" class="form-input" placeholder="Trip Highlight *" />
                 <p th:each="err : ${#fields.errors('highlight')}" th:text="${err}" class="err-label" />
             </label>
