@@ -30,12 +30,9 @@
                 <form class="search-form">
                     <div class="select">
                         <select>
-                            <option value="1">Pure CSS Select</option>
-                            <option value="2">No JS</option>
-                            <option value="3">Nice!</option>
-                            <option value="4">Pure CSS Select</option>
-                            <option value="5">No JS</option>
-                            <option value="6">Nice!</option>
+                            <th:block th:each="country: ${countries}">
+                                <option th:value="${country.getId()}" th:text="${country.getName()}"></option>
+                            </th:block>
                         </select>
                     </div>
 

@@ -1,8 +1,8 @@
 package com.travelapp.service;
 
-import com.travelapp.models.dto.RegisterDto;
+import com.travelapp.models.dto.RegisterDTO;
 
 public interface AuthService {
 
-    void signup(RegisterDto registerDto) throws Exception;
+    void signup(RegisterDTO registerDto) throws Exception;
 }

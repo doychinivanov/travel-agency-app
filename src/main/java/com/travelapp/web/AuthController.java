@@ -1,6 +1,6 @@
 package com.travelapp.web;
 
-import com.travelapp.models.dto.RegisterDto;
+import com.travelapp.models.dto.RegisterDTO;
 import com.travelapp.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.Arrays;
 
 @Controller
 @RequestMapping("/auth")
@@ -27,8 +26,8 @@ public class AuthController {
     }
 
     @ModelAttribute("registrationDTO")
-    public RegisterDto initRegistrationDto() {
-        return new RegisterDto();
+    public RegisterDTO initRegistrationDto() {
+        return new RegisterDTO();
     }
 
     @GetMapping("/login")
@@ -54,7 +53,7 @@ public class AuthController {
     }
 
     @PostMapping("/signup")
-    public String registerUser(@Valid RegisterDto registrationDTO,
+    public String registerUser(@Valid RegisterDTO registrationDTO,
                                BindingResult bindingResult,
                                RedirectAttributes redirectAttributes) {
 

@@ -7,7 +7,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @EqualPasswordsConstraint(message = "Passwords don't match")
-public class RegisterDto {
+public class RegisterDTO {
 
     @NotBlank(message = "This field is required!")
     @Size(min = 2, max = 50, message = "Your name must be between 2 and 50 characters long!")
@@ -23,7 +23,7 @@ public class RegisterDto {
 
     private String confirmPass;
 
-    public RegisterDto() {}
+    public RegisterDTO() {}
 
     public String getFullName() {
         return fullName;

@@ -1,7 +1,7 @@
 package com.travelapp.service.impl;
 
 import com.travelapp.models.UserEntity;
-import com.travelapp.models.dto.RegisterDto;
+import com.travelapp.models.dto.RegisterDTO;
 import com.travelapp.repositories.UserRepository;
 import com.travelapp.service.AuthService;
 import org.modelmapper.ModelMapper;
@@ -32,7 +32,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public void signup(RegisterDto registerDto) throws Exception {
+    public void signup(RegisterDTO registerDto) throws Exception {
         Optional<UserEntity> existingUser = this.userRepository.findByEmail(registerDto.getEmail());
 
         if (existingUser.isPresent()) {

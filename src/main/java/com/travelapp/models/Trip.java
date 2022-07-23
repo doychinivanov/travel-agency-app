@@ -17,14 +17,6 @@ public class Trip {
     @ManyToOne
     private Country country;
 
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
-    }
-
     @Column(nullable = false)
     private String highlight;
 
@@ -49,6 +41,14 @@ public class Trip {
     private String description;
 
     public Trip() {}
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
+    }
 
     public long getId() {
         return id;
