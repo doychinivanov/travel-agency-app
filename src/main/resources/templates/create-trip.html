@@ -19,7 +19,7 @@
     <div class="page-wrapper">
         <div th:replace="fragments/navigation"></div>
 
-        <form th:action="@{/trip/create}" th:method="post" th:object="${createTripDto}" class="basic-form">
+        <form enctype="multipart/form-data" th:action="@{/trip/create}" th:method="post" th:object="${createTripDto}" class="basic-form">
             <p th:if="${failedToCreate}" th:text="${failedToCreate}" class="err-label"></p>
             <label class="input-label">
                 <input th:field="*{destination}" type="text" name="destination" class="form-input" placeholder="Trip Destination *" />
@@ -42,7 +42,8 @@
             </label>
 
             <label class="input-label">
-                <input type="file" multiple name="image" class="form-input" placeholder="Upload images *" />
+                <input type="file" name="image" class="form-input" placeholder="Upload image *" />
+                <p th:if="${imageErr}" th:text="${imageErr}" class="err-label"></p>
             </label>
 
             <label class="input-label">
