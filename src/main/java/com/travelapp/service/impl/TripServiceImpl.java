@@ -3,11 +3,15 @@ package com.travelapp.service.impl;
 import com.travelapp.models.Country;
 import com.travelapp.models.Trip;
 import com.travelapp.models.dto.CreateTripDTO;
+import com.travelapp.models.dto.TripCardDTO;
 import com.travelapp.repositories.TripRepository;
 import com.travelapp.service.TripService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class TripServiceImpl implements TripService {
@@ -28,5 +32,11 @@ public class TripServiceImpl implements TripService {
         if (country != null) newTrip.setCountry(country);
 
         this.tripRepository.save(newTrip);
+    }
+
+    @Override
+    public List<TripCardDTO> getTripsForCountry(String countryName) {
+        List<Trip> tripsPerCountry = this.tripRepository.findByCountryName(countryName);
+        return Arrays.stream(this.modelMapper.map(tripsPerCountry, TripCardDTO[].class)).toList();
     }
 }

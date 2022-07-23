@@ -33,14 +33,16 @@ public class S3ServiceImpl implements S3Service {
 
     @Override
     public String uploadFile(MultipartFile img) {
+        File file = mapMultipartFileToFile(img);
+
         try {
-            File file = mapMultipartFileToFile(img);
             String fileName = String.format("%s.%s", UUID.randomUUID().toString(), FilenameUtils.getExtension(file.getAbsolutePath()));
             this.s3Client.putObject(new PutObjectRequest(this.bucketName, fileName, file));
             file.delete();
             return fileName;
         } catch (AmazonServiceException err) {
             System.out.println(err.getMessage());
+            file.delete();
             return null;
         }
     }

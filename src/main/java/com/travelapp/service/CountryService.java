@@ -1,6 +1,7 @@
 package com.travelapp.service;
 
 import com.travelapp.models.Country;
+import com.travelapp.models.Trip;
 import com.travelapp.models.dto.CountryNameDTO;
 
 import java.util.List;

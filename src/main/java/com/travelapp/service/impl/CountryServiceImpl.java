@@ -1,6 +1,7 @@
 package com.travelapp.service.impl;
 
 import com.travelapp.models.Country;
+import com.travelapp.models.Trip;
 import com.travelapp.models.dto.CountryNameDTO;
 import com.travelapp.repositories.CountryRepository;
 import com.travelapp.service.CountryService;

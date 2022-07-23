@@ -14,6 +14,16 @@ public class TripCardDTO {
 
     public TripCardDTO() {}
 
+    @Override
+    public String toString() {
+        return "TripCardDTO{" +
+                "img='" + img + '\'' +
+                ", destination='" + destination + '\'' +
+                ", highlight='" + highlight + '\'' +
+                ", price=" + price +
+                '}';
+    }
+
     public String getImg() {
         return img;
     }
