@@ -63,6 +63,7 @@ public class S3ServiceImpl implements S3Service {
         try {
             FileOutputStream fos = new FileOutputStream(mappedFile);
             fos.write(img.getBytes());
+            fos.close();
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

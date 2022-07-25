@@ -1,6 +1,7 @@
 package com.travelapp.web;
 
 import com.travelapp.models.dto.CountryNameDTO;
+import com.travelapp.models.dto.TripCardDTO;
 import com.travelapp.service.CountryService;
 import com.travelapp.service.TripService;
 import org.springframework.data.repository.query.Param;
@@ -28,7 +29,10 @@ public class HomeController {
         model.addAttribute("countries", allCountryNames);
 
         if (country != null) {
-            this.tripService.getTripsForCountry(country).forEach(System.out::println);
+            List<TripCardDTO> foundResults = this.tripService.getTripsForCountry(country);
+            model.addAttribute("results", foundResults);
+            model.addAttribute("searchResult", country);
+            return "home";
         }
 
         return "index";

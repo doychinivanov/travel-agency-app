@@ -1,0 +1,20 @@
+<div th:fragment="cardParams(id, img, destination, highlight, price)" class="card-container">
+    <a th:href="@{/trip/} + ${id}" class="anchor-reset">
+        <div class="pointer">
+            <div class="card-img-container">
+                <img th:src="@{/images/} + ${img}" alt="" />
+            </div>
+
+            <div class="card-content">
+                <div class="card-destination row">
+                    <span class="destination dark-mint" th:text="${destination}"></span>
+                    <span class="title"  th:text="${highlight}" ></span>
+                </div>
+
+                <div class="card-price">
+                    <span class="price-info" th:text="${price} + ' euro'">o</span>
+                </div>
+            </div>
+        </div>
+    </a>
+</div>

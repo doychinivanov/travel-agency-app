@@ -4,6 +4,7 @@ import com.amazonaws.util.IOUtils;
 import com.travelapp.service.S3Service;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.ByteArrayInputStream;
@@ -19,11 +20,11 @@ public class ImageController {
         this.s3Service = s3Service;
     }
 
-    @GetMapping("/images")
-    public void getImage(HttpServletResponse response) throws IOException {
+    @GetMapping("/images/{key}")
+    public void getImage(@PathVariable String key, HttpServletResponse response) throws IOException {
         response.setContentType("image/jpg");
 
-        InputStream is = new ByteArrayInputStream(this.s3Service.getFromS3("TEST_60575496_303.jpg"));
+        InputStream is = new ByteArrayInputStream(this.s3Service.getFromS3(key));
         IOUtils.copy(is, response.getOutputStream());
     }
 }

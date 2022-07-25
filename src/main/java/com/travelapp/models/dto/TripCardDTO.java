@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 public class TripCardDTO {
 
+    private long id;
+
     private String img;
 
     private String destination;
@@ -14,14 +16,12 @@ public class TripCardDTO {
 
     public TripCardDTO() {}
 
-    @Override
-    public String toString() {
-        return "TripCardDTO{" +
-                "img='" + img + '\'' +
-                ", destination='" + destination + '\'' +
-                ", highlight='" + highlight + '\'' +
-                ", price=" + price +
-                '}';
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getImg() {
