@@ -1,53 +1,48 @@
-package com.travelapp.models;
+package com.travelapp.models.dto;
 
-import javax.persistence.*;
+import com.travelapp.models.Country;
+
 import java.math.BigDecimal;
 
-@Table(name = "trips")
-@Entity
-public class Trip {
+public class TripDetailsDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
     private String destination;
 
-    @ManyToOne
     private Country country;
 
-    @Column(nullable = false)
     private String highlight;
 
-    @Column(nullable = false)
     private BigDecimal price;
 
-    @Column(nullable = false)
     private int days;
 
-    @Column(name = "image", nullable = false)
     private String img;
-    @Column(nullable = false, columnDefinition = "TEXT")
+
     private String description;
 
-    public String getImg() {
-        return img;
+    public TripDetailsDTO() {}
+
+    @Override
+    public String toString() {
+        return "TripDetailsDTO{" +
+                "id=" + id +
+                ", destination='" + destination + '\'' +
+                ", country=" + country +
+                ", highlight='" + highlight + '\'' +
+                ", price=" + price +
+                ", days=" + days +
+                ", img='" + img + '\'' +
+                '}';
     }
 
-    public void setImg(String img) {
-        this.img = img;
+    public String getDescription() {
+        return description;
     }
 
-
-    public Trip() {}
-
-    public Country getCountry() {
-        return country;
-    }
-
-    public void setCountry(Country country) {
-        this.country = country;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public long getId() {
@@ -64,6 +59,14 @@ public class Trip {
 
     public void setDestination(String destination) {
         this.destination = destination;
+    }
+
+    public Country getCountry() {
+        return country;
+    }
+
+    public void setCountry(Country country) {
+        this.country = country;
     }
 
     public String getHighlight() {
@@ -90,11 +93,11 @@ public class Trip {
         this.days = days;
     }
 
-    public String getDescription() {
-        return description;
+    public String getImg() {
+        return img;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setImg(String img) {
+        this.img = img;
     }
 }

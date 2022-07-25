@@ -2,11 +2,13 @@ package com.travelapp.web;
 
 import com.travelapp.models.Country;
 import com.travelapp.models.dto.CreateTripDTO;
+import com.travelapp.models.dto.TripDetailsDTO;
 import com.travelapp.service.CountryService;
 import com.travelapp.service.S3Service;
 import com.travelapp.service.TripService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -63,5 +65,34 @@ public class TripController {
             return "redirect:/trip/create";
         }
         return "redirect:/";
+    }
+
+    @GetMapping("/{id}")
+    public String getInfoForTrip(@PathVariable long id) {
+
+        try {
+            TripDetailsDTO trip = this.tripService.getTripById(id);
+            System.out.println(trip);
+            return "index";
+        } catch (Exception err) {
+            System.out.println(err.getMessage());
+            //            Should redirect to error message
+            return "index";
+        }
+    }
+
+    @GetMapping("/edit/{id}")
+    public String prepareEditInfo(@PathVariable long id, Model model) {
+
+        try {
+            TripDetailsDTO trip = this.tripService.getTripById(id);
+            model.addAttribute("editTripDto", trip);
+            System.out.println(trip.getCountry().getName());
+            return "edit-trip";
+        } catch (Exception err) {
+            System.out.println(err.getMessage());
+//            Should redirect to error message
+            return "index";
+        }
     }
 }

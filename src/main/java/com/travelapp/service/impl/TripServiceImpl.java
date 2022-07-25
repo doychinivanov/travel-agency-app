@@ -4,6 +4,7 @@ import com.travelapp.models.Country;
 import com.travelapp.models.Trip;
 import com.travelapp.models.dto.CreateTripDTO;
 import com.travelapp.models.dto.TripCardDTO;
+import com.travelapp.models.dto.TripDetailsDTO;
 import com.travelapp.repositories.TripRepository;
 import com.travelapp.service.TripService;
 import org.modelmapper.ModelMapper;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TripServiceImpl implements TripService {
@@ -38,5 +40,16 @@ public class TripServiceImpl implements TripService {
     public List<TripCardDTO> getTripsForCountry(String countryName) {
         List<Trip> tripsPerCountry = this.tripRepository.findByCountryName(countryName);
         return Arrays.stream(this.modelMapper.map(tripsPerCountry, TripCardDTO[].class)).toList();
+    }
+
+    @Override
+    public TripDetailsDTO getTripById(long id) throws Exception {
+        Optional<Trip> potentialTrip = this.tripRepository.findById(id);
+
+        if (potentialTrip.isEmpty()) {
+            throw new Exception("No such trip");
+        }
+
+        return this.modelMapper.map(potentialTrip.get(), TripDetailsDTO.class);
     }
 }

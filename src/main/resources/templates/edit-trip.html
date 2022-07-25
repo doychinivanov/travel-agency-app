@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+    </script>
+    <title>Edit trip</title>
+</head>
+<body>
+
+<section class="main">
+    <div class="page-wrapper">
+        <div th:replace="fragments/navigation"></div>
+
+        <form enctype="multipart/form-data" th:action="@{/trip/edit}" th:method="post" th:object="${editTripDto}" class="basic-form">
+            <p th:if="${failedToCreate}" th:text="${failedToCreate}" class="err-label"></p>
+            <label class="input-label">
+                <input th:field="*{destination}" type="text" name="destination" class="form-input" placeholder="Trip Destination *" />
+                <p th:each="err : ${#fields.errors('destination')}" th:text="${err}" class="err-label" />
+            </label>
+
+            <label class="input-label">
+                <input th:field="*{country.name}" type="text" name="country" class="form-input" placeholder="Country Destination *" />
+                <p th:each="err : ${#fields.errors('country')}" th:text="${err}" class="err-label" />
+            </label>
+
+            <label class="input-label">
+                <input th:field="*{highlight}" type="text" name="highlight" class="form-input" placeholder="Trip Highlight *" />
+                <p th:each="err : ${#fields.errors('highlight')}" th:text="${err}" class="err-label" />
+            </label>
+
+            <label class="input-label">
+                <input th:field="*{price}" type="number" name="price" class="form-input" placeholder="Price *" />
+                <p th:each="err : ${#fields.errors('price')}" th:text="${err}" class="err-label" />
+            </label>
+
+            <label class="input-label">
+                <input th:field="*{days}" type="number" name="days" class="form-input" placeholder="Number of Days *" />
+                <p th:each="err : ${#fields.errors('days')}" th:text="${err}" class="err-label" />
+            </label>
+
+            <label class="input-label">
+                <input type="file" name="image" class="form-input" placeholder="Upload image *" />
+                <p th:if="${imageErr}" th:text="${imageErr}" class="err-label"></p>
+            </label>
+
+            <label class="input-label">
+                <textarea th:field="*{description}" name="description" class="form-input" placeholder="Add description here..."></textarea>
+                <p th:each="err : ${#fields.errors('description')}" th:text="${err}" class="err-label" />
+            </label>
+
+            <label class="input-label">
+                <button class="submit-btn" type="submit">Edit</button>
+            </label>
+        </form>
+
+        <div th:replace="fragments/footer"></div>
+    </div>
+</section>
+
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.1/gsap.min.js"
+        integrity="sha512-cdV6j5t5o24hkSciVrb8Ki6FveC2SgwGfLE31+ZQRHAeSRxYhAQskLkq3dLm8ZcWe1N3vBOEYmmbhzf7NTtFFQ=="
+        crossorigin="anonymous"
+></script>
+</body>
+</html>
