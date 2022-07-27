@@ -2,6 +2,7 @@ package com.travelapp.web;
 
 import com.travelapp.models.Country;
 import com.travelapp.models.dto.CreateTripDTO;
+import com.travelapp.models.dto.EditTripDTO;
 import com.travelapp.models.dto.TripDetailsDTO;
 import com.travelapp.service.CountryService;
 import com.travelapp.service.S3Service;
@@ -34,6 +35,11 @@ public class TripController {
     @ModelAttribute("createTripDto")
     public CreateTripDTO initCreateTripDto() {
         return new CreateTripDTO();
+    }
+
+    @ModelAttribute("editTripDto")
+    public EditTripDTO initEditTripDto() {
+        return new EditTripDTO();
     }
 
     @GetMapping("/create")
@@ -77,7 +83,7 @@ public class TripController {
         } catch (Exception err) {
             System.out.println(err.getMessage());
             //            Should redirect to error message
-            return "index";
+            return "redirect:/";
         }
     }
 
@@ -85,14 +91,43 @@ public class TripController {
     public String prepareEditInfo(@PathVariable long id, Model model) {
 
         try {
-            TripDetailsDTO trip = this.tripService.getTripById(id);
+            EditTripDTO trip = this.tripService.getEditInfo(id);
             model.addAttribute("editTripDto", trip);
-            System.out.println(trip.getCountry().getName());
             return "edit-trip";
         } catch (Exception err) {
             System.out.println(err.getMessage());
 //            Should redirect to error message
-            return "index";
+            return "redirect:/";
+        }
+    }
+
+    @PostMapping("/edit/{id}")
+    public String editTrip(@PathVariable long id,
+                           @RequestParam("image") MultipartFile file,
+                           @Valid EditTripDTO editTripDTO,
+                           BindingResult bindingResult,
+                           RedirectAttributes redirectAttributes) {
+        System.out.println(editTripDTO);
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("editTripDTO", editTripDTO);
+            redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.editTripDTO", bindingResult);
+
+            return "redirect:/trip/edit/" + id;
+        }
+
+        try {
+            if (!file.isEmpty()) {
+                String imgName = this.s3Service.uploadFile(file);
+                editTripDTO.setImg(imgName);
+            }
+            Country country = this.countryService.createCountry(editTripDTO.getCountryName());
+            this.tripService.updateTrip(editTripDTO, country);
+//            redirect to details
+            return "redirect:/";
+        } catch (Exception err) {
+            System.out.println(err.getMessage());
+//            Should redirect to error message
+            return "redirect:/";
         }
     }
 }

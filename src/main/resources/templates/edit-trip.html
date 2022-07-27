@@ -19,7 +19,7 @@
     <div class="page-wrapper">
         <div th:replace="fragments/navigation"></div>
 
-        <form enctype="multipart/form-data" th:action="@{/trip/edit}" th:method="post" th:object="${editTripDto}" class="basic-form">
+        <form enctype="multipart/form-data" th:action="@{/trip/edit/} + ${editTripDto.id}" th:method="post" th:object="${editTripDto}" class="basic-form">
             <p th:if="${failedToCreate}" th:text="${failedToCreate}" class="err-label"></p>
             <label class="input-label">
                 <input th:field="*{destination}" type="text" name="destination" class="form-input" placeholder="Trip Destination *" />
@@ -27,8 +27,8 @@
             </label>
 
             <label class="input-label">
-                <input th:field="*{country.name}" type="text" name="country" class="form-input" placeholder="Country Destination *" />
-                <p th:each="err : ${#fields.errors('country')}" th:text="${err}" class="err-label" />
+                <input th:field="*{countryName}" type="text" name="countryName" class="form-input" placeholder="Country Destination *" />
+                <p th:each="err : ${#fields.errors('countryName')}" th:text="${err}" class="err-label" />
             </label>
 
             <label class="input-label">
