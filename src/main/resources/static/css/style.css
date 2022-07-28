@@ -18,6 +18,7 @@
 
 @import url('./home-search.css');
 
+@import url('./details.css');
 
 .page-wrapper {
     width: 100%;

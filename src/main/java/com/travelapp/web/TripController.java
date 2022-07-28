@@ -74,12 +74,12 @@ public class TripController {
     }
 
     @GetMapping("/{id}")
-    public String getInfoForTrip(@PathVariable long id) {
+    public String getInfoForTrip(@PathVariable long id, Model model) {
 
         try {
             TripDetailsDTO trip = this.tripService.getTripById(id);
-            System.out.println(trip);
-            return "index";
+            model.addAttribute("tripDetails", trip);
+            return "trip-details";
         } catch (Exception err) {
             System.out.println(err.getMessage());
             //            Should redirect to error message
@@ -107,7 +107,7 @@ public class TripController {
                            @Valid EditTripDTO editTripDTO,
                            BindingResult bindingResult,
                            RedirectAttributes redirectAttributes) {
-        System.out.println(editTripDTO);
+
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("editTripDTO", editTripDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.editTripDTO", bindingResult);
@@ -122,8 +122,7 @@ public class TripController {
             }
             Country country = this.countryService.createCountry(editTripDTO.getCountryName());
             this.tripService.updateTrip(editTripDTO, country);
-//            redirect to details
-            return "redirect:/";
+            return "redirect:/trip/" + id;
         } catch (Exception err) {
             System.out.println(err.getMessage());
 //            Should redirect to error message
