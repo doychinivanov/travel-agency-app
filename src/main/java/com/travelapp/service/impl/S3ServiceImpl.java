@@ -2,10 +2,7 @@ package com.travelapp.service.impl;
 
 import com.amazonaws.AmazonServiceException;
 import com.amazonaws.services.s3.AmazonS3;
-import com.amazonaws.services.s3.model.GetObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectRequest;
-import com.amazonaws.services.s3.model.PutObjectResult;
-import com.amazonaws.services.s3.model.S3Object;
+import com.amazonaws.services.s3.model.*;
 import com.amazonaws.util.IOUtils;
 import com.travelapp.service.S3Service;
 import org.apache.commons.io.FilenameUtils;
@@ -55,6 +52,11 @@ public class S3ServiceImpl implements S3Service {
         } catch (AmazonServiceException | IOException e) {
             throw new IllegalStateException("Failed to download file to s3", e);
         }
+    }
+
+    @Override
+    public void deleteFileFromS3(String key) {
+        this.s3Client.deleteObject(new DeleteObjectRequest(this.bucketName, key));
     }
 
     private File mapMultipartFileToFile(MultipartFile img) {

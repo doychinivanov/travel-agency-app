@@ -28,6 +28,8 @@
                 <div class="details-info">
                     <div class="highlight-wrapper">
                         <p th:text="'The highlight of this trip wil be ' + ${tripDetails.highlight}"></p>
+
+                        <p th:text="${tripDetails.description}"></p>
                     </div>
 
                     <div class="booking-details">
@@ -37,16 +39,16 @@
                         </div>
 
                         <div class="details-actions">
-                            <label class="input-label">
-                                <a th:href="@{/trip/edit/} + ${tripDetails.id}" class="submit-btn" type="book">Edit</a>
-                            </label>
+                            <a th:href="@{/trip/edit/} + ${tripDetails.id}" class="anchor-button pink-background" type="book">Book</a>
+                            <a th:href="@{/trip/edit/} + ${tripDetails.id}" class="anchor-button pink-background" type="book">Edit</a>
+                            <a th:href="@{/trip/delete/} + ${tripDetails.id}" class="anchor-button dark-green-background" type="book">Delete</a>
                         </div>
                     </div>
                 </div>
 
             </div>
-
         </div>
+          <div th:replace="fragments/footer"></div>
       </div>
     </body>
 </html>

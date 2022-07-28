@@ -7,4 +7,6 @@ public interface S3Service {
     String uploadFile(MultipartFile file);
 
     byte[] getFromS3(String key);
+
+    void deleteFileFromS3(String key);
 }

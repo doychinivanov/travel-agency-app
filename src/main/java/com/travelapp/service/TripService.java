@@ -21,4 +21,6 @@ public interface TripService {
 
     EditTripDTO getEditInfo(long id) throws Exception;
 
+    void deleteTrip(long id) throws Exception;
+
 }

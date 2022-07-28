@@ -21,3 +21,33 @@
 .dark-mint {
     color: #8EDCE6;
 }
+
+.anchor-button {
+    margin-top: 2rem;
+    box-sizing: border-box;
+    font-size: 2.2rem;
+    border: none;
+    width: 35%;
+    height: 5rem;
+    font-weight: 700;
+    cursor: pointer;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+}
+
+.anchor-button:hover {
+    color: #ffffff;
+}
+
+.pink-background {
+    background-color: #F2CEE6;
+}
+
+.dark-mint-background {
+    background-color: #8EDCE6;
+}
+
+.dark-green-background {
+    background-color: #2E4C50;
+}

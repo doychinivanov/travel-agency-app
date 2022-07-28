@@ -129,4 +129,17 @@ public class TripController {
             return "redirect:/";
         }
     }
+    @GetMapping("/delete/{id}")
+    public String deleteTrip(@PathVariable long id) {
+
+        try{
+            this.tripService.deleteTrip(id);
+            return "redirect:/";
+        } catch (Exception err) {
+            System.out.println(err.getMessage());
+//                  add err message
+            return "redirect:/trip/" + id;
+        }
+
+    }
 }

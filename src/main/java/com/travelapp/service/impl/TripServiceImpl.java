@@ -7,6 +7,7 @@ import com.travelapp.models.dto.EditTripDTO;
 import com.travelapp.models.dto.TripCardDTO;
 import com.travelapp.models.dto.TripDetailsDTO;
 import com.travelapp.repositories.TripRepository;
+import com.travelapp.service.S3Service;
 import com.travelapp.service.TripService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +22,13 @@ public class TripServiceImpl implements TripService {
     private TripRepository tripRepository;
     private ModelMapper modelMapper;
 
+    private S3Service s3Service;
+
     @Autowired
-    public TripServiceImpl(TripRepository tripRepository, ModelMapper modelMapper) {
+    public TripServiceImpl(TripRepository tripRepository, ModelMapper modelMapper, S3Service s3Service) {
         this.tripRepository = tripRepository;
         this.modelMapper = modelMapper;
+        this.s3Service = s3Service;
     }
 
 
@@ -71,6 +75,13 @@ public class TripServiceImpl implements TripService {
     public EditTripDTO getEditInfo(long id) throws Exception {
         Trip trip = getTripEntity(id);
         return this.modelMapper.map(trip, EditTripDTO.class);
+    }
+
+    @Override
+    public void deleteTrip(long id) throws Exception {
+        Trip trip = getTripEntity(id);
+        this.s3Service.deleteFileFromS3(trip.getImg());
+        this.tripRepository.delete(trip);
     }
 
     private Trip getTripEntity(long id) throws Exception {
