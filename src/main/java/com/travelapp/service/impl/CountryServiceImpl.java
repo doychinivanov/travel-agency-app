@@ -48,4 +48,11 @@ public class CountryServiceImpl implements CountryService {
         List<Country> allCountries = this.countryRepository.findAll();
         return Arrays.stream(this.modelMapper.map(allCountries, CountryNameDTO[].class)).toList();
     }
+
+    @Override
+    public void deleteCountryIfNoTrips(Country country) {
+        if (country.getTrips().isEmpty()){
+            this.countryRepository.delete(country);
+        }
+    }
 }

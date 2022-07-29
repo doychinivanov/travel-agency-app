@@ -7,6 +7,7 @@ import com.travelapp.models.dto.EditTripDTO;
 import com.travelapp.models.dto.TripCardDTO;
 import com.travelapp.models.dto.TripDetailsDTO;
 import com.travelapp.repositories.TripRepository;
+import com.travelapp.service.CountryService;
 import com.travelapp.service.S3Service;
 import com.travelapp.service.TripService;
 import org.modelmapper.ModelMapper;
@@ -22,12 +23,14 @@ public class TripServiceImpl implements TripService {
     private TripRepository tripRepository;
     private ModelMapper modelMapper;
 
+    private CountryService countryService;
     private S3Service s3Service;
 
     @Autowired
-    public TripServiceImpl(TripRepository tripRepository, ModelMapper modelMapper, S3Service s3Service) {
+    public TripServiceImpl(TripRepository tripRepository, ModelMapper modelMapper, CountryService countryService, S3Service s3Service) {
         this.tripRepository = tripRepository;
         this.modelMapper = modelMapper;
+        this.countryService = countryService;
         this.s3Service = s3Service;
     }
 
@@ -80,8 +83,10 @@ public class TripServiceImpl implements TripService {
     @Override
     public void deleteTrip(long id) throws Exception {
         Trip trip = getTripEntity(id);
+        System.out.println(trip.getCountry().getName());
         this.s3Service.deleteFileFromS3(trip.getImg());
         this.tripRepository.delete(trip);
+        this.countryService.deleteCountryIfNoTrips(trip.getCountry());
     }
 
     private Trip getTripEntity(long id) throws Exception {

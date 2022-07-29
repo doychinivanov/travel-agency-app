@@ -11,4 +11,6 @@ public interface CountryService {
     Country createCountry(String countryName);
 
     List<CountryNameDTO> getAllCountryNames();
+
+    void deleteCountryIfNoTrips(Country country);
 }
