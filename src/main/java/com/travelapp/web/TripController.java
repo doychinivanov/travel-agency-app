@@ -1,5 +1,6 @@
 package com.travelapp.web;
 
+import com.travelapp.models.AuthUser;
 import com.travelapp.models.Country;
 import com.travelapp.models.dto.CreateTripDTO;
 import com.travelapp.models.dto.EditTripDTO;
@@ -7,7 +8,9 @@ import com.travelapp.models.dto.TripDetailsDTO;
 import com.travelapp.service.CountryService;
 import com.travelapp.service.S3Service;
 import com.travelapp.service.TripService;
+import com.travelapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,12 +26,14 @@ public class TripController {
     private TripService tripService;
     private S3Service s3Service;
 
+    private UserService userService;
     private CountryService countryService;
 
     @Autowired
-    public TripController(TripService tripService, S3Service s3Service, CountryService countryService) {
+    public TripController(TripService tripService, S3Service s3Service, UserService userService, CountryService countryService) {
         this.tripService = tripService;
         this.s3Service = s3Service;
+        this.userService = userService;
         this.countryService = countryService;
     }
 
@@ -74,11 +79,13 @@ public class TripController {
     }
 
     @GetMapping("/{id}")
-    public String getInfoForTrip(@PathVariable long id, Model model) {
+    public String getInfoForTrip(@PathVariable long id, @AuthenticationPrincipal AuthUser currentAuthUser, Model model) {
 
         try {
             TripDetailsDTO trip = this.tripService.getTripById(id);
+            boolean isAlreadyBooked = this.userService.userHasBookedTrip(id, currentAuthUser.getId());
             model.addAttribute("tripDetails", trip);
+            model.addAttribute("isAlreadyBooked", isAlreadyBooked);
             return "trip-details";
         } catch (Exception err) {
             System.out.println(err.getMessage());

@@ -7,4 +7,6 @@ import java.util.List;
 public interface UserService {
 
     List<TripCardDTO> getUserBookings(long userId);
+
+    boolean userHasBookedTrip(long userId, long tripId) throws Exception;
 }

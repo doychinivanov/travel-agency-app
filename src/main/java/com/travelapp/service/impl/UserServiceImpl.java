@@ -6,9 +6,11 @@ import com.travelapp.repositories.UserRepository;
 import com.travelapp.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -30,5 +32,22 @@ public class UserServiceImpl implements UserService {
                 .getBookings()
                 .stream()
                 .map(booking -> this.modelMapper.map(booking.getTrip(), TripCardDTO.class)).toList();
+    }
+
+    @Override
+    public boolean userHasBookedTrip(long userId, long tripId) throws Exception {
+        Optional<UserEntity> user = this.userRepository.findById(userId);
+
+        if (user.isEmpty()) {
+            throw new Exception("No such user");
+        }
+
+        return user
+                .get()
+                .getBookings()
+                .stream()
+                .filter(booking -> booking.getTrip().getId() == tripId)
+                .toList()
+                .size() > 0;
     }
 }
