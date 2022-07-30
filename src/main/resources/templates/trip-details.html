@@ -39,9 +39,9 @@
                         </div>
 
                         <div class="details-actions">
-                            <a th:href="@{/trip/edit/} + ${tripDetails.id}" class="anchor-button pink-background" type="book">Book</a>
-                            <a th:href="@{/trip/edit/} + ${tripDetails.id}" class="anchor-button pink-background" type="book">Edit</a>
-                            <a th:href="@{/trip/delete/} + ${tripDetails.id}" class="anchor-button dark-green-background" type="book">Delete</a>
+                            <a th:href="@{/booking/trip/} + ${tripDetails.id}" class="anchor-button pink-background" type="book">Book</a>
+                            <a sec:authorize="hasAnyRole('ADMIN', 'MODERATOR')" th:href="@{/trip/edit/} + ${tripDetails.id}" class="anchor-button pink-background" type="book">Edit</a>
+                            <a sec:authorize="hasAnyRole('ADMIN', 'MODERATOR')" th:href="@{/trip/delete/} + ${tripDetails.id}" class="anchor-button dark-green-background" type="book">Delete</a>
                         </div>
                     </div>
                 </div>

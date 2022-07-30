@@ -2,7 +2,6 @@ package com.travelapp.models;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Table(name = "users")
@@ -22,6 +21,22 @@ public class UserEntity {
     @Column(nullable = false)
     private String password;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private Set<RoleEntity> roles = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private Set<Booking> bookings;
+
+    public UserEntity() {}
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> bookings) {
+        this.bookings = bookings;
+    }
+
     public Set<RoleEntity> getRoles() {
         return roles;
     }
@@ -29,11 +44,6 @@ public class UserEntity {
     public void setRoles(Set<RoleEntity> roles) {
         this.roles = roles;
     }
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set<RoleEntity> roles = new HashSet<>();
-
-    public UserEntity() {}
 
     public long getId() {
         return id;

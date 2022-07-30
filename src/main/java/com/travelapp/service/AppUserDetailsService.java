@@ -1,11 +1,11 @@
 package com.travelapp.service;
 
+import com.travelapp.models.AuthUser;
 import com.travelapp.models.RoleEntity;
 import com.travelapp.models.UserEntity;
 import com.travelapp.repositories.UserRepository;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -26,16 +26,16 @@ public class AppUserDetailsService implements UserDetailsService {
     }
 
     private UserDetails mapToUserDetails(UserEntity userEntity) {
-        return
-                User.builder().
-                        username(userEntity.getEmail()).
-                        password(userEntity.getPassword()).
-                        authorities(userEntity.
-                                getRoles().
-                                stream().
-                                map(this::map).
-                                toList()).
-                        build();
+        return new AuthUser(
+                userEntity.getId(),
+                userEntity.getEmail(),
+                userEntity.getPassword(),
+                userEntity.getFullName(),
+                userEntity
+                        .getRoles()
+                        .stream()
+                        .map(this::map)
+                        .toList());
     }
 
     private GrantedAuthority map(RoleEntity userRole) {

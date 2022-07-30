@@ -12,8 +12,8 @@
                 <a sec:authorize="!isAuthenticated()" class="nav-link" th:href="@{/auth/login}">Login</a>
                 <a sec:authorize="!isAuthenticated()" class="nav-link" th:href="@{/auth/signup}">Sign up</a>
 
-                <a sec:authorize="hasRole('ADMIN')" class="nav-link" th:href="@{/trip/create}">Create Trip</a>
-                <a sec:authorize="isAuthenticated()" class="nav-link" th:href="@{/auth/signup}">My Trips</a>
+                <a sec:authorize="hasAnyRole('ADMIN', 'MODERATOR')" class="nav-link" th:href="@{/trip/create}">Create Trip</a>
+                <a sec:authorize="isAuthenticated()" class="nav-link" th:href="@{/user/bookings}">My Trips</a>
                 <span class="nav-link">
                     <form sec:authorize="isAuthenticated()" th:action="@{/auth/logout}" th:method="post">
                         <input class="logout-input" type="submit" value="Logout">

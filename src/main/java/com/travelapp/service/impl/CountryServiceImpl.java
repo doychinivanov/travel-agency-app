@@ -6,6 +6,7 @@ import com.travelapp.models.dto.CountryNameDTO;
 import com.travelapp.repositories.CountryRepository;
 import com.travelapp.service.CountryService;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -17,6 +18,7 @@ public class CountryServiceImpl implements CountryService {
     private CountryRepository countryRepository;
     private ModelMapper modelMapper;
 
+    @Autowired
     public CountryServiceImpl(CountryRepository countryRepository, ModelMapper modelMapper) {
         this.countryRepository = countryRepository;
         this.modelMapper = modelMapper;
