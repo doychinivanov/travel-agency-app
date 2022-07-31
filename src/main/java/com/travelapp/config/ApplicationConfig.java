@@ -34,6 +34,7 @@ public class ApplicationConfig {
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                 .antMatchers("/", "/trip/{id}", "/create-payment-intent").permitAll()
                 .antMatchers("/auth/login", "/auth/signup").anonymous()
+                .antMatchers("/booking/payment").authenticated()
                 .antMatchers("/admin/dashboard").hasRole(UserRoleEnum.ADMIN.name())
                 .antMatchers("/trip/create", "/trip/edit/{id}", "/trip/delete/{id}").hasAnyRole(UserRoleEnum.ADMIN.name(), UserRoleEnum.MODERATOR.name())
                 .and()

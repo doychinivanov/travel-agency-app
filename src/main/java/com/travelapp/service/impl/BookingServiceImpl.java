@@ -12,6 +12,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.Optional;
 
 @Service
@@ -34,7 +35,7 @@ public class BookingServiceImpl implements BookingService {
 
 
     @Override
-    public void bookTrip(BookingCreateDTO bookingCreateDTO, long tripId, long userId) throws Exception {
+    public long bookTrip(BookingCreateDTO bookingCreateDTO, long tripId, long userId) throws Exception {
         Booking newBooking = this.modelMapper.map(bookingCreateDTO, Booking.class);
         Optional<Trip> existingTrip = this.tripRepository.findById(tripId);
         Optional<UserEntity> currentUser = this.userRepository.findById(userId);
@@ -46,7 +47,16 @@ public class BookingServiceImpl implements BookingService {
         newBooking.setTrip(existingTrip.get());
         newBooking.setUser(currentUser.get());
 
-        this.bookingRepository.save(newBooking);
-        System.out.println("PLEASE CREATE MEEEEEEEEEEEEEEEEEEEEE");
+        Booking savedBooking = this.bookingRepository.save(newBooking);
+        return savedBooking.getId();
+    }
+
+    @Override
+    public BigDecimal getPriceForBooking(long bookingId) throws Exception {
+        Optional<Booking> optionalBooking = this.bookingRepository.findById(bookingId);
+
+        if (optionalBooking.isEmpty()) throw new Exception("No such booking");
+
+        return  optionalBooking.get().getTrip().getPrice();
     }
 }
