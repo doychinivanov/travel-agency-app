@@ -32,7 +32,7 @@ public class ApplicationConfig {
         http
                 .authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .antMatchers("/", "/trip/{id}").permitAll()
+                .antMatchers("/", "/trip/{id}", "/create-payment-intent").permitAll()
                 .antMatchers("/auth/login", "/auth/signup").anonymous()
                 .antMatchers("/admin/dashboard").hasRole(UserRoleEnum.ADMIN.name())
                 .antMatchers("/trip/create", "/trip/edit/{id}", "/trip/delete/{id}").hasAnyRole(UserRoleEnum.ADMIN.name(), UserRoleEnum.MODERATOR.name())
@@ -47,7 +47,7 @@ public class ApplicationConfig {
                 .logout()
                 .logoutUrl("/auth/logout")
                 .invalidateHttpSession(true)
-                .deleteCookies("JSESSIONID");
+                .deleteCookies("JSESSIONID").and().csrf().disable();
 
         return http.build();
     }

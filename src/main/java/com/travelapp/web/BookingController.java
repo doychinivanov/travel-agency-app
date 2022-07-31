@@ -4,6 +4,7 @@ import com.travelapp.models.AuthUser;
 import com.travelapp.models.dto.BookingCreateDTO;
 import com.travelapp.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,8 @@ import javax.validation.Valid;
 @RequestMapping("/booking")
 public class BookingController {
 
+    @Value("${stripe.test.public.key}")
+    private String stripePublicKey;
     private BookingService bookingService;
 
     @Autowired
@@ -57,5 +60,11 @@ public class BookingController {
 
 //        redirect to my tips
         return "redirect:/";
+    }
+
+    @GetMapping("/payment")
+    public String getStripeForm(Model model) {
+        model.addAttribute("stripePublicKey", stripePublicKey);
+        return "stripe-form";
     }
 }
