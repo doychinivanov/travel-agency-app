@@ -22,6 +22,10 @@ public class PaymentController {
                         .builder()
                         .setAmount(longValue(createPayment.getPrice().multiply(BigDecimal.valueOf(100L))))
                         .setCurrency("eur")
+                        .putMetadata("email", createPayment.getEmail())
+                        .putMetadata("bookingId", Long.toString(createPayment.getBookingId()))
+                        .putMetadata("featureRequest", createPayment.getFeatureRequest())
+                        .putMetadata("phone", createPayment.getPhone())
                         .setAutomaticPaymentMethods(
                                 PaymentIntentCreateParams.AutomaticPaymentMethods
                                         .builder()

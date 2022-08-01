@@ -1,6 +1,7 @@
 package com.travelapp.models;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -26,6 +27,9 @@ public class UserEntity {
 
     @OneToMany(mappedBy = "user")
     private Set<Booking> bookings;
+
+    @Column(name = "money_spent")
+    private BigDecimal totalAmountOfMoneySpent;
 
     public UserEntity() {}
 
@@ -71,5 +75,13 @@ public class UserEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public BigDecimal getTotalAmountOfMoneySpent() {
+        return totalAmountOfMoneySpent;
+    }
+
+    public void setTotalAmountOfMoneySpent(BigDecimal totalAmountOfMoneySpent) {
+        this.totalAmountOfMoneySpent = totalAmountOfMoneySpent;
     }
 }

@@ -3,13 +3,18 @@ package com.travelapp.web;
 import com.stripe.exception.SignatureVerificationException;
 import com.stripe.model.*;
 import com.stripe.net.Webhook;
+import com.travelapp.service.BookingService;
+import com.travelapp.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.math.BigDecimal;
 
 @RestController
 public class StripeWebhookController {
@@ -19,8 +24,18 @@ public class StripeWebhookController {
     @Value("${stripe.webhook.secret}")
     private String endpointSecret;
 
+    private BookingService bookingService;
+    private UserService userService;
+
+    @Autowired
+    public StripeWebhookController(BookingService bookingService, UserService userService) {
+        this.bookingService = bookingService;
+        this.userService = userService;
+    }
+
+
     @PostMapping("/stripe/events")
-    public String handleStripeEvent(@RequestBody String payload, @RequestHeader("Stripe-Signature") String sigHeader) {
+    public String handleStripeEvent(@RequestBody String payload, @RequestHeader("Stripe-Signature") String sigHeader) throws Exception {
         if (sigHeader == null) return "";
 
         Event event;
@@ -46,6 +61,9 @@ public class StripeWebhookController {
         switch (event.getType()) {
             case "payment_intent.succeeded":
                 PaymentIntent paymentIntent = (PaymentIntent) stripeObject;
+                this.bookingService.completePayment(Long.parseLong(paymentIntent.getMetadata().get("bookingId")));
+                this.userService.addNewlySpentMoneyToTotalAmount(paymentIntent.getMetadata().get("email"), BigDecimal.valueOf(paymentIntent.getAmount() / 100L));
+
                 logger.info("Payment for " + paymentIntent.getAmount() + " succeeded.");
                 // Then define and call a method to handle the successful payment intent.
                 // handlePaymentIntentSucceeded(paymentIntent);

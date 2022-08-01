@@ -2,6 +2,7 @@ package com.travelapp.web;
 
 import com.travelapp.models.AuthUser;
 import com.travelapp.models.dto.BookingCreateDTO;
+import com.travelapp.models.dto.BookingPaymentMetadataDTO;
 import com.travelapp.service.BookingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -67,11 +68,18 @@ public class BookingController {
     }
 
     @GetMapping("/payment/{bookingId}")
-    public String getStripeForm(@PathVariable long bookingId, Model model) throws Exception {
+    public String getStripeForm(@PathVariable long bookingId, @AuthenticationPrincipal AuthUser currentAuthUser, Model model) throws Exception {
         try {
+            BookingPaymentMetadataDTO bookingMetadata = this.bookingService.getBookingMetadata(bookingId);
             BigDecimal priceForBooking = this.bookingService.getPriceForBooking(bookingId);
+
             model.addAttribute("stripePublicKey", stripePublicKey);
             model.addAttribute("priceForBooking", priceForBooking);
+            model.addAttribute("bookingId", bookingId);
+            model.addAttribute("email", currentAuthUser.getUsername());
+            model.addAttribute("featureRequest", bookingMetadata.getComment());
+            model.addAttribute("phoneNumber", bookingMetadata.getPhoneNumber());
+
             return "stripe-form";
         } catch (Exception err) {
             logger.error(err.getMessage());

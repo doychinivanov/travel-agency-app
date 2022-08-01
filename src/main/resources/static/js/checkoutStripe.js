@@ -4,6 +4,10 @@ const stripe = Stripe(stripePublicKey);
 // The items the customer wants to buy
 const items = [];
 const price = priceForBooking;
+const bookingId = _bookingId
+const email = _email
+const featureRequest = _featureRequest
+const phone = _phone
 
 let elements;
 
@@ -19,7 +23,7 @@ async function initialize() {
   const response = await fetch("/create-payment-intent", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ items, price }),
+    body: JSON.stringify({ items, price, bookingId, email, featureRequest, phone }),
   });
   const { clientSecret } = await response.json();
 
@@ -40,7 +44,7 @@ async function handleSubmit(e) {
     elements,
     confirmParams: {
       // Make sure to change this to your payment completion page
-      return_url: "http://localhost:8080/",
+      return_url: "http://localhost:8080/user/bookings",
     },
   });
 

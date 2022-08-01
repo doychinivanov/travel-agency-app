@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,5 +50,14 @@ public class UserServiceImpl implements UserService {
                 .filter(booking -> booking.getTrip().getId() == tripId)
                 .toList()
                 .size() > 0;
+    }
+
+    @Override
+    public void addNewlySpentMoneyToTotalAmount(String userEmail, BigDecimal newAmount) {
+        UserEntity user = this.userRepository.findByEmail(userEmail).get();
+
+        BigDecimal totalAmountOfMoneySpent = user.getTotalAmountOfMoneySpent() != null ? user.getTotalAmountOfMoneySpent() : BigDecimal.ZERO;
+        user.setTotalAmountOfMoneySpent(totalAmountOfMoneySpent.add(newAmount));
+        this.userRepository.save(user);
     }
 }
