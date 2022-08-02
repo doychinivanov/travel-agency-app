@@ -2,6 +2,7 @@ package com.travelapp.models;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Table(name = "trips")
 @Entity
@@ -31,6 +32,19 @@ public class Trip {
     @Column(nullable = false, columnDefinition = "TEXT")
     private String description;
 
+    @OneToMany
+    private Set<Booking> bookings;
+
+    public Trip() {}
+
+    public Set<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(Set<Booking> booking) {
+        this.bookings = booking;
+    }
+
     public String getImg() {
         return img;
     }
@@ -38,9 +52,6 @@ public class Trip {
     public void setImg(String img) {
         this.img = img;
     }
-
-
-    public Trip() {}
 
     public Country getCountry() {
         return country;

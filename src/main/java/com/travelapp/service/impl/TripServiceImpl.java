@@ -12,8 +12,10 @@ import com.travelapp.service.S3Service;
 import com.travelapp.service.TripService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
@@ -83,10 +85,15 @@ public class TripServiceImpl implements TripService {
     @Override
     public void deleteTrip(long id) throws Exception {
         Trip trip = getTripEntity(id);
-        System.out.println(trip.getCountry().getName());
         this.s3Service.deleteFileFromS3(trip.getImg());
         this.tripRepository.delete(trip);
         this.countryService.deleteCountryIfNoTrips(trip.getCountry());
+    }
+
+    @Override
+    public List<TripCardDTO> getMostBookedTrips() {
+        List<Trip> mostBookedTrips = this.tripRepository.getMostBookedTrips(PageRequest.of(0, 1));
+        return Arrays.stream(this.modelMapper.map(mostBookedTrips, TripCardDTO[].class)).toList();
     }
 
     private Trip getTripEntity(long id) throws Exception {

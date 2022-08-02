@@ -49,6 +49,8 @@ public class BookingServiceImpl implements BookingService {
         newBooking.setUser(currentUser.get());
 
         Booking savedBooking = this.bookingRepository.save(newBooking);
+        existingTrip.get().getBookings().add(savedBooking);
+        this.tripRepository.save(existingTrip.get());
         return savedBooking.getId();
     }
 

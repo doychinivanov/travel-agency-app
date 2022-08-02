@@ -17,10 +17,10 @@ public class Booking {
     @Column(columnDefinition = "TEXT")
     private String comment;
 
-    @OneToOne
+    @ManyToOne(optional = false)
     private Trip trip;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     private UserEntity user;
 
     private boolean payed = false;

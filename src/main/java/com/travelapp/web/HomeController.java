@@ -25,7 +25,8 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model, @Param("country") String country) {
         List<CountryNameDTO> allCountryNames = countryService.getAllCountryNames();
-
+        List<TripCardDTO> mostBookedTrips = tripService.getMostBookedTrips();
+        mostBookedTrips.forEach(x -> System.out.println(x.getDestination()));
         model.addAttribute("countries", allCountryNames);
 
         if (country != null) {

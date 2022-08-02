@@ -83,12 +83,11 @@ public class TripController {
 
         try {
             TripDetailsDTO trip = this.tripService.getTripById(id);
-            boolean isAlreadyBooked = this.userService.userHasBookedTrip(id, currentAuthUser.getId());
+            boolean isAlreadyBooked = this.userService.userHasBookedTrip(currentAuthUser.getId(), id);
             model.addAttribute("tripDetails", trip);
             model.addAttribute("isAlreadyBooked", isAlreadyBooked);
             return "trip-details";
         } catch (Exception err) {
-            System.out.println(err.getMessage());
             //            Should redirect to error message
             return "redirect:/";
         }
