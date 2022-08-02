@@ -12,4 +12,6 @@ public interface UserService {
     boolean userHasBookedTrip(long userId, long tripId) throws Exception;
 
     void addNewlySpentMoneyToTotalAmount(String userEmail, BigDecimal newAmount);
+
+    BigDecimal getTotalAmountUserSpentOnThePlatform(long userid);
 }

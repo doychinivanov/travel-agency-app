@@ -22,7 +22,11 @@
     <div class="content">
       <div class="holiday-type">
         <h2 class="type-header pink" th:text="${userName} + ' these are your booked trips'"></h2>
-        <h3 class="type-description">Choose the one that suits you best</h3>
+        <h3 class="type-description" th:text="'Spend 10000 on the platform to get a free trip'"></h3>
+        <h3 class="type-description" th:text=" ${totalAmountSpent} + '/10000'"></h3>
+        <div class="progress" th:style="${'height: 2rem;'}">
+          <div th:text="${percentageCompleted} + '%'" class="progress-bar bg-success" role="progressbar" th:style="'width: ' + ${percentageCompleted} + '%;'" aria-valuenow="${percentageCompleted}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
         <div class="content-cards">
           <th:block th:each="countryCard: ${userBookings}">
             <div th:replace="fragments/trip-card :: cardParams(${countryCard.getId()}, ${countryCard.getImg()}, ${countryCard.getDestination()}, ${countryCard.getHighlight()}, ${countryCard.getPrice()})"></div>

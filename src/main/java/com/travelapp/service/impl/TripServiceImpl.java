@@ -91,9 +91,15 @@ public class TripServiceImpl implements TripService {
     }
 
     @Override
-    public List<TripCardDTO> getMostBookedTrips() {
-        List<Trip> mostBookedTrips = this.tripRepository.getMostBookedTrips(PageRequest.of(0, 1));
+    public List<TripCardDTO> getMostBookedTrips(int limit) {
+        List<Trip> mostBookedTrips = this.tripRepository.getMostBookedTrips(PageRequest.of(0, limit));
         return Arrays.stream(this.modelMapper.map(mostBookedTrips, TripCardDTO[].class)).toList();
+    }
+
+    @Override
+    public List<TripCardDTO> getRandomTrips(int limit) {
+        List<Trip> randomTrips = this.tripRepository.getRandomTrips(PageRequest.of(0, limit));
+        return Arrays.stream(this.modelMapper.map(randomTrips, TripCardDTO[].class)).toList();
     }
 
     private Trip getTripEntity(long id) throws Exception {

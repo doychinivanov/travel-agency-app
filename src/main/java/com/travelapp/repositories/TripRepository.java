@@ -19,4 +19,9 @@ public interface TripRepository extends JpaRepository<Trip, Long> {
     @Query("SELECT t FROM Trip t" +
             " ORDER BY t.bookings.size DESC")
     List<Trip> getMostBookedTrips(Pageable page);
+
+
+    @Query("SELECT t FROM Trip t" +
+            " ORDER BY t.img DESC")
+    List<Trip> getRandomTrips(Pageable page);
 }

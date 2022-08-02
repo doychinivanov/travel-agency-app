@@ -25,8 +25,14 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model, @Param("country") String country) {
         List<CountryNameDTO> allCountryNames = countryService.getAllCountryNames();
-        List<TripCardDTO> mostBookedTrips = tripService.getMostBookedTrips();
-        mostBookedTrips.forEach(x -> System.out.println(x.getDestination()));
+        List<TripCardDTO> mostBookedTrips = tripService.getMostBookedTrips(6);
+        List<TripCardDTO> randomTrips = this.tripService.getRandomTrips(6);
+
+        model.addAttribute("mostBooked1", mostBookedTrips.subList(0, 3));
+        model.addAttribute("mostBooked2", mostBookedTrips.subList(3, mostBookedTrips.size()));
+        model.addAttribute("randomTrips1", randomTrips.subList(0, 3));
+        model.addAttribute("randomTrips2", randomTrips.subList(3, randomTrips.size()));
+
         model.addAttribute("countries", allCountryNames);
 
         if (country != null) {

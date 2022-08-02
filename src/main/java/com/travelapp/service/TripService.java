@@ -23,6 +23,7 @@ public interface TripService {
 
     void deleteTrip(long id) throws Exception;
 
-    List<TripCardDTO> getMostBookedTrips();
+    List<TripCardDTO> getMostBookedTrips(int limit);
 
+    List<TripCardDTO> getRandomTrips(int limit);
 }

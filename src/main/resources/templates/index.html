@@ -49,132 +49,14 @@
                     <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <div class="card-container">
-                                    <a href="#" class="anchor-reset">
-                                        <div class="pointer">
-                                            <div class="card-img-container">
-                                                <img th:src="@{/images}" alt="" />
-                                            </div>
-
-                                            <div class="card-content">
-                                                <div class="card-destination row">
-                                                    <span class="destination dark-mint">Switzerland</span>
-                                                    <span class="title">Mountains of tibidabo</span>
-                                                </div>
-
-                                                <div class="card-price">
-                                                    <span class="price-info">500 euro</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="card-container">
-                                    <a href="#" class="anchor-reset">
-                                        <div class="pointer">
-                                            <div class="card-img-container">
-                                                <img src="./imgs/switzleft.png" alt="" />
-                                            </div>
-
-                                            <div class="card-content">
-                                                <div class="card-destination row">
-                                                    <span class="destination dark-mint">Switzerland</span>
-                                                    <span class="title">Mountains of tibidabo</span>
-                                                </div>
-
-                                                <div class="card-price">
-                                                    <span class="price-info">500 euro</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="card-container">
-                                    <a href="#" class="anchor-reset">
-                                        <div class="pointer">
-                                            <div class="card-img-container">
-                                                <img src="./imgs/switzleft.png" alt="" />
-                                            </div>
-
-                                            <div class="card-content">
-                                                <div class="card-destination row">
-                                                    <span class="destination dark-mint">Switzerland</span>
-                                                    <span class="title">Mountains of tibidabo</span>
-                                                </div>
-
-                                                <div class="card-price">
-                                                    <span class="price-info">500 euro</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                                <th:block th:each="countryCard: ${mostBooked1}">
+                                    <div th:replace="fragments/trip-card :: cardParams(${countryCard.getId()}, ${countryCard.getImg()}, ${countryCard.getDestination()}, ${countryCard.getHighlight()}, ${countryCard.getPrice()})"></div>
+                                </th:block>
                             </div>
                             <div class="carousel-item">
-                                <div class="card-container">
-                                    <a href="#" class="anchor-reset">
-                                        <div class="pointer">
-                                            <div class="card-img-container">
-                                                <img src="./imgs/switzleft.png" alt="" />
-                                            </div>
-
-                                            <div class="card-content">
-                                                <div class="card-destination row">
-                                                    <span class="destination dark-mint">Switzerland</span>
-                                                    <span class="title">Mountains of tibidabo</span>
-                                                </div>
-
-                                                <div class="card-price">
-                                                    <span class="price-info">500 euro</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="card-container">
-                                    <a href="#" class="anchor-reset">
-                                        <div class="pointer">
-                                            <div class="card-img-container">
-                                                <img src="./imgs/switzleft.png" alt="" />
-                                            </div>
-
-                                            <div class="card-content">
-                                                <div class="card-destination row">
-                                                    <span class="destination dark-mint">Switzerland</span>
-                                                    <span class="title">Mountains of tibidabo</span>
-                                                </div>
-
-                                                <div class="card-price">
-                                                    <span class="price-info">500 euro</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="card-container">
-                                    <a href="#" class="anchor-reset">
-                                        <div class="pointer">
-                                            <div class="card-img-container">
-                                                <img src="./imgs/switzleft.png" alt="" />
-                                            </div>
-
-                                            <div class="card-content">
-                                                <div class="card-destination row">
-                                                    <span class="destination dark-mint">Switzerland</span>
-                                                    <span class="title">Mountains of tibidabo</span>
-                                                </div>
-
-                                                <div class="card-price">
-                                                    <span class="price-info">500 euro</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                                <th:block th:each="countryCard: ${mostBooked2}">
+                                    <div th:replace="fragments/trip-card :: cardParams(${countryCard.getId()}, ${countryCard.getImg()}, ${countryCard.getDestination()}, ${countryCard.getHighlight()}, ${countryCard.getPrice()})"></div>
+                                </th:block>
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -198,132 +80,14 @@
                     <div id="carouselExampleControls2" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <div class="card-container">
-                                    <a href="#" class="anchor-reset">
-                                        <div class="pointer">
-                                            <div class="card-img-container">
-                                                <img src="./imgs/switzleft.png" alt="" />
-                                            </div>
-
-                                            <div class="card-content">
-                                                <div class="card-destination row">
-                                                    <span class="destination pink">Switzerland</span>
-                                                    <span class="title">Mountains of tibidabo</span>
-                                                </div>
-
-                                                <div class="card-price">
-                                                    <span class="price-info">500 euro</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="card-container">
-                                    <a href="#" class="anchor-reset">
-                                        <div class="pointer">
-                                            <div class="card-img-container">
-                                                <img src="./imgs/switzleft.png" alt="" />
-                                            </div>
-
-                                            <div class="card-content">
-                                                <div class="card-destination row">
-                                                    <span class="destination pink">Switzerland</span>
-                                                    <span class="title">Mountains of tibidabo</span>
-                                                </div>
-
-                                                <div class="card-price">
-                                                    <span class="price-info">500 euro</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="card-container">
-                                    <a href="#" class="anchor-reset">
-                                        <div class="pointer">
-                                            <div class="card-img-container">
-                                                <img src="./imgs/switzleft.png" alt="" />
-                                            </div>
-
-                                            <div class="card-content">
-                                                <div class="card-destination row">
-                                                    <span class="destination pink">Switzerland</span>
-                                                    <span class="title">Mountains of tibidabo</span>
-                                                </div>
-
-                                                <div class="card-price">
-                                                    <span class="price-info">500 euro</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                                <th:block th:each="countryCard: ${randomTrips1}">
+                                    <div th:replace="fragments/trip-card :: cardParams(${countryCard.getId()}, ${countryCard.getImg()}, ${countryCard.getDestination()}, ${countryCard.getHighlight()}, ${countryCard.getPrice()})"></div>
+                                </th:block>
                             </div>
                             <div class="carousel-item">
-                                <div class="card-container">
-                                    <a href="#" class="anchor-reset">
-                                        <div class="pointer">
-                                            <div class="card-img-container">
-                                                <img src="./imgs/switzleft.png" alt="" />
-                                            </div>
-
-                                            <div class="card-content">
-                                                <div class="card-destination row">
-                                                    <span class="destination pink">Switzerland</span>
-                                                    <span class="title">Mountains of tibidabo</span>
-                                                </div>
-
-                                                <div class="card-price">
-                                                    <span class="price-info">500 euro</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="card-container">
-                                    <a href="#" class="anchor-reset">
-                                        <div class="pointer">
-                                            <div class="card-img-container">
-                                                <img src="./imgs/switzleft.png" alt="" />
-                                            </div>
-
-                                            <div class="card-content">
-                                                <div class="card-destination row">
-                                                    <span class="destination pink">Switzerland</span>
-                                                    <span class="title">Mountains of tibidabo</span>
-                                                </div>
-
-                                                <div class="card-price">
-                                                    <span class="price-info">500 euro</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
-
-                                <div class="card-container">
-                                    <a href="#" class="anchor-reset">
-                                        <div class="pointer">
-                                            <div class="card-img-container">
-                                                <img src="./imgs/switzleft.png" alt="" />
-                                            </div>
-
-                                            <div class="card-content">
-                                                <div class="card-destination row">
-                                                    <span class="destination pink">Switzerland</span>
-                                                    <span class="title">Mountains of tibidabo</span>
-                                                </div>
-
-                                                <div class="card-price">
-                                                    <span class="price-info">500 euro</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </a>
-                                </div>
+                                <th:block th:each="countryCard: ${randomTrips2}">
+                                    <div th:replace="fragments/trip-card :: cardParams(${countryCard.getId()}, ${countryCard.getImg()}, ${countryCard.getDestination()}, ${countryCard.getHighlight()}, ${countryCard.getPrice()})"></div>
+                                </th:block>
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="prev">

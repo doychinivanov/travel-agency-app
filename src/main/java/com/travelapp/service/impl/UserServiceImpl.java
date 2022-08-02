@@ -60,4 +60,10 @@ public class UserServiceImpl implements UserService {
         user.setTotalAmountOfMoneySpent(totalAmountOfMoneySpent.add(newAmount));
         this.userRepository.save(user);
     }
+
+    @Override
+    public BigDecimal getTotalAmountUserSpentOnThePlatform(long userid) {
+        UserEntity user = this.userRepository.findById(userid).get();
+        return user.getTotalAmountOfMoneySpent();
+    }
 }
