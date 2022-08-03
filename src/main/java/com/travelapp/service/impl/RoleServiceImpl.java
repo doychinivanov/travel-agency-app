@@ -44,6 +44,7 @@ public class RoleServiceImpl implements RoleService {
 
             adminRole = this.rolesRepository.save(adminRole);
             moderatorRole = this.rolesRepository.save(moderatorRole);
+            standardRole = this.rolesRepository.save(standardRole);
 
             initAdmin(List.of(adminRole, moderatorRole));
             initModerator(List.of(moderatorRole));

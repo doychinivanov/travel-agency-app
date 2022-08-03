@@ -2,6 +2,7 @@ package com.travelapp.service.impl;
 
 import com.travelapp.models.UserEntity;
 import com.travelapp.models.dto.TripCardDTO;
+import com.travelapp.models.dto.UserTableDTO;
 import com.travelapp.repositories.UserRepository;
 import com.travelapp.service.UserService;
 import org.modelmapper.ModelMapper;
@@ -65,5 +66,14 @@ public class UserServiceImpl implements UserService {
     public BigDecimal getTotalAmountUserSpentOnThePlatform(long userid) {
         UserEntity user = this.userRepository.findById(userid).get();
         return user.getTotalAmountOfMoneySpent();
+    }
+
+    @Override
+    public List<UserTableDTO> getAllUsers() {
+        List<UserEntity> allUsersForAdminTable = this.userRepository.getAllUsersForAdminDashboard();
+
+        allUsersForAdminTable.forEach(x -> System.out.println(x.getFullName() + " ------> " + x.getRoles().toString()));
+
+        return null;
     }
 }
