@@ -1,0 +1,6 @@
+<tr th:fragment="userParams(id, fullName, email, role)"  th:class="${role.name().equals('MODERATOR')} ? table-primary : ''">
+  <th th:text="${id}" scope="row"></th>
+  <td th:text="${fullName}"></td>
+  <td th:text="${email}"></td>
+  <td th:text="${role}"></td>
+</tr>

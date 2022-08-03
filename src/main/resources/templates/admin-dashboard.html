@@ -27,31 +27,16 @@
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">#</th>
+                        <th scope="col"># id</th>
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr class="table-primary">
-                        <th scope="row">1</th>
-                        <td>Mark Otto</td>
-                        <td>@mdo</td>
-                        <td>MODERATOR</td>
-                    </tr>
-                    <tr class="table-primary">
-                        <th scope="row">2</th>
-                        <td>Jacob Thornton</td>
-                        <td>@fat</td>
-                        <td>MODERATOR</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Larry Howard</td>
-                        <td>@twitter</td>
-                        <td>USER</td>
-                    </tr>
+                        <th:block th:each="user: ${users}">
+                            <div th:replace="fragments/user-row :: userParams(${user.getId()}, ${user.getFullName()}, ${user.getEmail()}, ${user.getPrimaryRole()})"></div>
+                        </th:block>
                     </tbody>
                 </table>
 

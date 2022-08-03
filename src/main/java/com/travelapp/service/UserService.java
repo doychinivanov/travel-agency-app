@@ -5,6 +5,7 @@ import com.travelapp.models.dto.UserTableDTO;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Set;
 
 public interface UserService {
 
@@ -16,5 +17,5 @@ public interface UserService {
 
     BigDecimal getTotalAmountUserSpentOnThePlatform(long userid);
 
-    List<UserTableDTO> getAllUsers();
+    Set<UserTableDTO> getAllUsers();
 }

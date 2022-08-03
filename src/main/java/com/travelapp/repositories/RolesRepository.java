@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface RolesRepository extends JpaRepository<RoleEntity, Long> {
     @Query("SELECT r FROM RoleEntity r" +
-            " WHERE r.userRole = 'STANDARD'")
+            " WHERE r.userRole = :role")
     RoleEntity getUserRole(@Param("role") UserRoleEnum userRole);
 }

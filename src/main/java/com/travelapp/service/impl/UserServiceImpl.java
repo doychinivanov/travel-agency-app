@@ -7,12 +7,14 @@ import com.travelapp.repositories.UserRepository;
 import com.travelapp.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -69,11 +71,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserTableDTO> getAllUsers() {
+    public Set<UserTableDTO> getAllUsers() {
         List<UserEntity> allUsersForAdminTable = this.userRepository.getAllUsersForAdminDashboard();
 
-        allUsersForAdminTable.forEach(x -> System.out.println(x.getFullName() + " ------> " + x.getRoles().toString()));
-
-        return null;
+        return Arrays.stream(this.modelMapper.map(allUsersForAdminTable, UserTableDTO[].class)).collect(Collectors.toSet());
     }
 }
