@@ -30,7 +30,13 @@ public class UserController {
     public String getUserBookings(@AuthenticationPrincipal AuthUser currentAuthUser, Model model) {
         List<TripCardDTO> userBookings = this.userService.getUserBookings(currentAuthUser.getId());
         BigDecimal totalAmountUserSpentOnThePlatform = this.userService.getTotalAmountUserSpentOnThePlatform(currentAuthUser.getId());
-        BigDecimal percentageCompleted = totalAmountUserSpentOnThePlatform.divide(TARGET_GOAL).multiply(BigDecimal.valueOf(100)).setScale(0, RoundingMode.FLOOR);
+        BigDecimal percentageCompleted = BigDecimal.ZERO;
+
+        if (totalAmountUserSpentOnThePlatform != null) {
+            percentageCompleted = totalAmountUserSpentOnThePlatform.divide(TARGET_GOAL).multiply(BigDecimal.valueOf(100)).setScale(0, RoundingMode.FLOOR);
+        } else {
+            totalAmountUserSpentOnThePlatform = BigDecimal.ZERO;
+        }
 
         model.addAttribute("userName", currentAuthUser.getFullName());
         model.addAttribute("userBookings", userBookings);

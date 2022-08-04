@@ -24,6 +24,9 @@
                 <h2 class="type-header pink" th:text="'Welcome ' + ${userName} + ', this is your dashboard'"></h2>
                 <h3 class="type-description">Users and their roles</h3>
 
+                <p th:if="${error}" class="err-label" th:text="${error}"></p>
+                <p th:if="${successMsg}" class="success-label" th:text="${successMsg}"></p>
+
                 <table class="table">
                     <thead>
                     <tr>
@@ -31,6 +34,7 @@
                         <th scope="col">Name</th>
                         <th scope="col">Email</th>
                         <th scope="col">Role</th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>

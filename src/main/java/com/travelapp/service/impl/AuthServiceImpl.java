@@ -50,8 +50,6 @@ public class AuthServiceImpl implements AuthService {
         registerDto.setPassword(passwordEncoder.encode(registerDto.getPassword()));
         UserEntity newUser = this.modelMapper.map(registerDto, UserEntity.class);
         RoleEntity role = this.rolesRepository.getUserRole(UserRoleEnum.STANDARD);
-        System.out.println(UserRoleEnum.STANDARD);
-        System.out.println(role.getUserRole());
         newUser.setRoles(new HashSet<>(List.of(role)));
         this.userRepository.save(newUser);
         login(newUser);

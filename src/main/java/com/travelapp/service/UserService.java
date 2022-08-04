@@ -2,6 +2,7 @@ package com.travelapp.service;
 
 import com.travelapp.models.dto.TripCardDTO;
 import com.travelapp.models.dto.UserTableDTO;
+import com.travelapp.models.enums.UserRoleEnum;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,4 +19,6 @@ public interface UserService {
     BigDecimal getTotalAmountUserSpentOnThePlatform(long userid);
 
     Set<UserTableDTO> getAllUsers();
+
+    String changeUserRole(long userId, UserRoleEnum userRole) throws Exception;
 }

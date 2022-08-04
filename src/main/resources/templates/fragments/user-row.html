@@ -3,4 +3,9 @@
   <td th:text="${fullName}"></td>
   <td th:text="${email}"></td>
   <td th:text="${role}"></td>
+  <td>
+    <a class="table-anchor-button dark-green-background" th:href="@{/admin/make/moderator/} + ${id}" th:if="${role.name().equals('STANDARD')}">Make Moderator</a>
+
+    <a class="table-anchor-button dark-green-background" th:href="@{/admin/make/standard/} + ${id}" th:if="${role.name().equals('MODERATOR')}">Make Standard</a>
+  </td>
 </tr>
