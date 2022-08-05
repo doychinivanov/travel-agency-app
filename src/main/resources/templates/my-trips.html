@@ -28,6 +28,7 @@
           <div th:text="${percentageCompleted} + '%'" class="progress-bar bg-success" role="progressbar" th:style="'width: ' + ${percentageCompleted} + '%;'" aria-valuenow="${percentageCompleted}" aria-valuemin="0" aria-valuemax="100"></div>
         </div>
         <div class="content-cards">
+          <p th:if="${userBookings.size() == 0}">You haven't booked any trips yet.</p>
           <th:block th:each="countryCard: ${userBookings}">
             <div th:replace="fragments/trip-card :: cardParams(${countryCard.getId()}, ${countryCard.getImg()}, ${countryCard.getDestination()}, ${countryCard.getHighlight()}, ${countryCard.getPrice()})"></div>
           </th:block>

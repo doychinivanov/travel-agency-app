@@ -36,7 +36,7 @@ public class ApplicationConfig {
                 .antMatchers("/auth/login", "/auth/signup").anonymous()
                 .antMatchers("/booking/payment").authenticated()
                 .antMatchers("/admin/dashboard").hasRole(UserRoleEnum.ADMIN.name())
-                .antMatchers("/trip/create", "/trip/edit/{id}", "/trip/delete/{id}").hasAnyRole(UserRoleEnum.ADMIN.name(), UserRoleEnum.MODERATOR.name())
+                .antMatchers("/trip/create/new", "/trip/edit/{id}", "/trip/delete/{id}").hasAnyRole(UserRoleEnum.ADMIN.name(), UserRoleEnum.MODERATOR.name())
                 .and()
                 .formLogin()
                 .loginPage("/auth/login")

@@ -47,12 +47,12 @@ public class TripController {
         return new EditTripDTO();
     }
 
-    @GetMapping("/create")
+    @GetMapping("/create/new")
     public String createTripForm() {
         return "create-trip";
     }
 
-    @PostMapping("/create")
+    @PostMapping("/create/new")
     public String createTrip(@RequestParam("image") MultipartFile file,
                              @Valid CreateTripDTO createTripDTO,
                              BindingResult bindingResult,
@@ -63,7 +63,7 @@ public class TripController {
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.createTripDto", bindingResult);
             redirectAttributes.addFlashAttribute("imageErr", "Image is required");
 
-            return "redirect:/trip/create";
+            return "redirect:/trip/create/new";
         }
 
         try {
@@ -73,7 +73,7 @@ public class TripController {
             this.tripService.createTrip(createTripDTO, country);
         } catch (Exception err) {
             redirectAttributes.addFlashAttribute("failedToCreate", err.getMessage());
-            return "redirect:/trip/create";
+            return "redirect:/trip/create/new";
         }
         return "redirect:/";
     }
@@ -82,12 +82,18 @@ public class TripController {
     public String getInfoForTrip(@PathVariable long id, @AuthenticationPrincipal AuthUser currentAuthUser, Model model) {
 
         try {
+            boolean isAlreadyBooked= false;
             TripDetailsDTO trip = this.tripService.getTripById(id);
-            boolean isAlreadyBooked = this.userService.userHasBookedTrip(currentAuthUser.getId(), id);
+
+            if (currentAuthUser != null) {
+                isAlreadyBooked = this.userService.userHasBookedTrip(currentAuthUser.getId(), id);
+            }
+
             model.addAttribute("tripDetails", trip);
             model.addAttribute("isAlreadyBooked", isAlreadyBooked);
             return "trip-details";
         } catch (Exception err) {
+            System.out.println(err.getMessage());
             //            Should redirect to error message
             return "redirect:/";
         }

@@ -1,0 +1,17 @@
+@media all and (min-width: 1700px) {
+    .search-form {
+        width: 50%;
+    }
+}
+
+@media all and (max-width: 1100px) {
+    .search-form {
+        width: 85%;
+    }
+}
+
+@media all and (max-width: 600px) {
+    .search-form {
+        width: 100%;
+    }
+}
