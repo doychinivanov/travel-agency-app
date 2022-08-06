@@ -19,20 +19,24 @@
   <div class="page-wrapper">
     <div th:replace="fragments/navigation"></div>
 
-    <form th:action="@{/auth/login}" th:method="post" class="basic-form">
-      <label class="input-label">
-        <input type="email" id="username" name="username" class="form-input" placeholder="Email Address *" />
-      </label>
+    <div class="content">
+      <form th:action="@{/auth/login}" th:method="post" class="basic-form">
+        <label class="input-label">
+          <input type="email" id="username" name="username" class="form-input" placeholder="Email Address *" />
+        </label>
 
-      <label class="input-label">
-        <input type="password" id="password" name="password" class="form-input" placeholder="Password *" />
-        <p th:if="${bad_credentials}" class="err-label">Invalid email or password</p>
-      </label>
+        <label class="input-label">
+          <input type="password" id="password" name="password" class="form-input" placeholder="Password *" />
+          <p th:if="${bad_credentials}" class="err-label">Invalid email or password</p>
+        </label>
 
-      <label class="input-label">
-        <button class="submit-btn" type="submit">Login</button>
-      </label>
-    </form>
+        <label class="input-label">
+          <button class="submit-btn" type="submit">Login</button>
+        </label>
+      </form>
+
+    </div>
+
 
     <div th:replace="fragments/footer"></div>
   </div>

@@ -22,6 +22,8 @@
 
 @import url('./search-form-responsive.css');
 
+@import url('./form-responsive.css');
+
 .page-wrapper {
     width: 100%;
     background: #0d1b1e;
