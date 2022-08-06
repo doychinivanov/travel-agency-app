@@ -30,6 +30,8 @@
 
 @import url('./footer-responsive.css');
 
+@import url('./carousel-responsive.css');
+
 .page-wrapper {
     width: 100%;
     background: #0d1b1e;

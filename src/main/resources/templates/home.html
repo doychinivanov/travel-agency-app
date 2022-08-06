@@ -26,9 +26,9 @@
 
                 <form th:action="@{/}" class="search-form">
                     <div class="select">
-                        <select  name="country">
+                        <select name="country">
                             <th:block th:each="country: ${countries}">
-                                <option th:value="${country.getName()}" th:text="${country.getName()}"></option>
+                                <option th:selected="${searchResult == country.getName()}" th:value="${country.getName()}" th:text="${country.getName()}"></option>
                             </th:block>
                         </select>
                     </div>

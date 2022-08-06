@@ -1,0 +1,19 @@
+@media all and (min-width: 1001px) {
+    .large-carousel {
+        display: block;
+    }
+
+    .small-carousel {
+        display: none;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    .small-carousel {
+        display: block;
+    }
+
+    .large-carousel {
+        display: none;
+    }
+}
