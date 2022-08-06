@@ -103,6 +103,9 @@
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
+		<finalName>
+			travel-agency-app
+		</finalName>
 	</build>
 
 </project>
