@@ -1,0 +1,69 @@
+@media all and (max-width: 1200px) {
+    .anchor-button {
+        font-size: 1.9rem;
+    }
+
+    .payment-info{
+       font-size: 1.9rem;
+    }
+
+    .booking-details {
+       flex-direction: column;
+       align-items: center;
+       width: 100%
+    }
+
+    .details-actions {
+        margin-top: 2rem;
+    }
+}
+
+@media all and (max-width: 1000px) {
+    .anchor-button {
+        font-size: 1.7rem;
+        height: 4rem;
+    }
+
+    .payment-info{
+       font-size: 1.7rem;
+    }
+}
+
+@media all and (max-width: 800px) {
+    .details-image-holder {
+        height: auto;
+    }
+
+    .details-destination {
+        font-size: 3rem;
+    }
+
+    .details-country {
+        font-size: 1.5rem;
+    }
+
+    .highlight-wrapper p {
+        font-size: 1.3rem;
+    }
+
+    .anchor-button {
+        font-size: 1.5rem;
+        height: 4rem;
+    }
+
+    .payment-info{
+       font-size: 1.5rem;
+    }
+}
+
+
+@media all and (max-width: 600px) {
+    .anchor-button {
+        font-size: 1.2rem;
+        height: 3.5rem;
+    }
+
+    .payment-info{
+       font-size: 1.2rem;
+    }
+}

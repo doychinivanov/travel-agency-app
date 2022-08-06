@@ -2,11 +2,20 @@
     .basic-form .form-input {
         font-size: 1.9rem;
     }
+
+    .basic-form .submit-btn {
+        font-size: 1.9rem;
+    }
 }
 
 @media all and (max-width: 1000px) {
     .basic-form .form-input {
         font-size: 1.7rem;
+    }
+
+    .basic-form .submit-btn {
+        font-size: 1.7rem;
+        height: 4rem;
     }
 }
 
@@ -15,6 +24,15 @@
         font-size: 1.5rem;
         height: 4.5rem;
     }
+
+    .basic-form .submit-btn {
+        font-size: 1.5rem;
+        height: 4rem;
+    }
+
+    .input-label .err-label {
+        font-size: 1.5rem;
+    }
 }
 
 @media all and (max-width: 600px) {
@@ -22,48 +40,16 @@
         font-size: 1.2rem;
         height: 4rem;
     }
-}
 
-@media all and (max-width: 1200px) {
-    .basic-form .submit-btn {
-        font-size: 1.9rem;
-    }
-}
-
-@media all and (max-width: 1000px) {
-    .basic-form .submit-btn {
-        font-size: 1.7rem;
-        height: 4rem;
-    }
-}
-
-@media all and (max-width: 800px) {
-    .basic-form .submit-btn {
-        font-size: 1.5rem;
-        height: 4rem;
-    }
-}
-
-@media all and (max-width: 600px) {
     .basic-form .submit-btn {
         font-size: 1.2rem;
         height: 3.5rem;
     }
-}
 
-@media all and (max-width: 800px) {
-    .input-label .err-label {
-        font-size: 1.5rem;
-    }
-}
-
-@media all and (max-width: 600px) {
     .input-label .err-label {
         font-size: 1.2rem;
     }
-}
 
-@media all and (max-width: 600px) {
     .basic-form .input-label {
         min-height: 7rem;
     }

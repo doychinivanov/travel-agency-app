@@ -24,6 +24,12 @@
 
 @import url('./form-responsive.css');
 
+@import url('./headers-responsive.css');
+
+@import url('./details-responsive.css');
+
+@import url('./footer-responsive.css');
+
 .page-wrapper {
     width: 100%;
     background: #0d1b1e;
@@ -65,7 +71,6 @@
     text-align: center;
     font-family: 'Roboto', 'sans-serif';
     font-weight: 700;
-    font-size: 3rem;
     margin-bottom: 1.5rem;
 }
 
@@ -73,7 +78,6 @@
     text-align: center;
     font-weight: 500;
     margin-bottom: 1.5rem;
-    font-size: 1.8rem;
 }
 
 .empty-carousel-msg {
