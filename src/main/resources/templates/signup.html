@@ -5,9 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/style.css" />
+    <link rel="shortcut icon" type="image/ico" href="../imgs/favicon.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
@@ -18,61 +20,62 @@
 <section class="main">
     <div class="page-wrapper">
         <div th:replace="fragments/navigation"></div>
+        <div class="content">
+            <form
+                    th:action="@{/auth/signup}"
+                    th:method="post"
+                    th:object="${registrationDTO}"
+                    class="basic-form">
+                <label class="input-label">
+                    <input
+                            th:field="*{fullName}"
+                            id="fullName"
+                            name="fullName"
+                            type="text"
+                            class="form-input"
+                            placeholder="Full Name *" />
+                    <p th:each="err : ${#fields.errors('fullName')}" th:text="${err}" class="err-label" />
+                </label>
 
-        <form
-                th:action="@{/auth/signup}"
-                th:method="post"
-                th:object="${registrationDTO}"
-                class="basic-form">
-            <label class="input-label">
-                <input
-                        th:field="*{fullName}"
-                        id="fullName"
-                        name="fullName"
-                        type="text"
-                        class="form-input"
-                        placeholder="Full Name *" />
-                <p th:each="err : ${#fields.errors('fullName')}" th:text="${err}" class="err-label" />
-            </label>
+                <label class="input-label">
+                    <input
+                            th:field="*{email}"
+                            id="email"
+                            name="email"
+                            type="email"
+                            class="form-input"
+                            placeholder="Email Address *" />
+                    <p th:each="err : ${#fields.errors('email')}" th:text="${err}" class="err-label" />
+                    <p th:if="${emailTaken}" th:text="${emailTaken}" class="err-label"></p>
+                </label>
 
-            <label class="input-label">
-                <input
-                        th:field="*{email}"
-                        id="email"
-                        name="email"
-                        type="email"
-                        class="form-input"
-                        placeholder="Email Address *" />
-                <p th:each="err : ${#fields.errors('email')}" th:text="${err}" class="err-label" />
-                <p th:if="${emailTaken}" th:text="${emailTaken}" class="err-label"></p>
-            </label>
+                <label class="input-label">
+                    <input
+                            th:field="*{password}"
+                            id="password"
+                            name="password"
+                            type="password"
+                            class="form-input"
+                            placeholder="Password *" />
+                    <p th:each="err : ${#fields.errors('password')}" th:text="${err}" class="err-label" />
+                </label>
 
-            <label class="input-label">
-                <input
-                        th:field="*{password}"
-                        id="password"
-                        name="password"
-                        type="password"
-                        class="form-input"
-                        placeholder="Password *" />
-                <p th:each="err : ${#fields.errors('password')}" th:text="${err}" class="err-label" />
-            </label>
+                <label class="input-label">
+                    <input
+                            th:field="*{confirmPass}"
+                            id="confirmPass"
+                            name="confirmPass"
+                            type="password"
+                            class="form-input"
+                            placeholder="Confirm Password *" />
+                    <p th:if="${confirmPassNotMatching}" class="err-label">Passwords don't match</p>
+                </label>
 
-            <label class="input-label">
-                <input
-                        th:field="*{confirmPass}"
-                        id="confirmPass"
-                        name="confirmPass"
-                        type="password"
-                        class="form-input"
-                        placeholder="Confirm Password *" />
-                <p th:if="${confirmPassNotMatching}" class="err-label">Passwords don't match</p>
-            </label>
-
-            <label class="input-label">
-                <button class="submit-btn" type="submit">Sign Up</button>
-            </label>
-        </form>
+                <label class="input-label">
+                    <button class="submit-btn" type="submit">Sign Up</button>
+                </label>
+            </form>
+        </div>
 
         <div th:replace="fragments/footer"></div>
     </div>

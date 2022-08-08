@@ -1,5 +1,23 @@
+@media all and (max-width: 1100px) {
+    footer {
+        height: 10rem;
+    }
+}
+
 @media all and (max-width: 700px) {
     footer {
-        height: 7rem;
+        height: 8rem;
+    }
+
+    .footer-text {
+        margin-top: -26px;
+    }
+
+    .footer-links li a i {
+        font-size: 1rem;
+    }
+
+    span {
+        font-size: 1rem;
     }
 }

@@ -50,7 +50,7 @@ public class BookingController {
                                 @Valid BookingCreateDTO bookingCreateDTO,
                                 BindingResult bindingResult,
                                 RedirectAttributes redirectAttributes) {
-
+        System.out.println(bindingResult.hasErrors());
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("bookingCreateDTO", bookingCreateDTO);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.bookingCreateDTO", bindingResult);

@@ -85,3 +85,12 @@
     justify-content: center;
     text-align: center;
 }
+
+.social-anchor {
+    color: #2E4C50;
+    text-decoration: none;
+}
+
+.social-anchor:hover {
+    color: #8EDCE6;
+}

@@ -4,6 +4,20 @@ footer {
   bottom:0px;
 }
 
+.footer-links {
+    display: flex;
+    list-style: none;
+    width: 9%;
+    margin: auto;
+    padding: 0;
+    justify-content: space-between;
+    max-width: 135px;
+}
+
+.footer-links li a i {
+    font-size: 1.8rem;
+}
+
 footer div {
   background-color: var(--col-deepblue);
   margin: -5px 0px 0px 0px;
