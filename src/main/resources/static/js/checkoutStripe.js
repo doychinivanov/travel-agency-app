@@ -44,7 +44,7 @@ async function handleSubmit(e) {
     elements,
     confirmParams: {
       // Make sure to change this to your payment completion page
-      return_url: "http://localhost:8080/user/bookings",
+        return_url: "http://travelagencyapp-env.eba-xqv99dmp.us-east-2.elasticbeanstalk.com/user/bookings",
     },
   });
 
