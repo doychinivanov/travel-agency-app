@@ -32,9 +32,9 @@ public class ApplicationConfig {
         http
                 .authorizeRequests()
                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                .antMatchers("/", "/trip/{id}", "/create-payment-intent").permitAll()
+                .antMatchers("/", "/trip/{id}").permitAll()
                 .antMatchers("/auth/login", "/auth/signup").anonymous()
-                .antMatchers("/booking/payment").authenticated()
+                .antMatchers("/booking/payment", "/booking/trip/{id}", "/create-payment-intent").authenticated()
                 .antMatchers("/admin/dashboard").hasRole(UserRoleEnum.ADMIN.name())
                 .antMatchers("/trip/create/new", "/trip/edit/{id}", "/trip/delete/{id}").hasAnyRole(UserRoleEnum.ADMIN.name(), UserRoleEnum.MODERATOR.name())
                 .and()

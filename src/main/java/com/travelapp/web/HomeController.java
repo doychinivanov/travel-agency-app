@@ -28,19 +28,10 @@ public class HomeController {
         List<CountryNameDTO> allCountryNames = countryService.getAllCountryNames();
         List<TripCardDTO> mostBookedTrips = tripService.getMostBookedTrips(6);
         List<TripCardDTO> randomTrips = this.tripService.getRandomTrips(6);
-        boolean noEnoughTripsInDb = mostBookedTrips.isEmpty() || mostBookedTrips.size() < 3 || randomTrips.isEmpty() || randomTrips.size() < 3;
 
         model.addAttribute("countries", allCountryNames);
-
-        if (noEnoughTripsInDb) {
-            model.addAttribute("noEnoughTripsInDb", true);
-        } else {
-            model.addAttribute("noEnoughTripsInDb", false);
-            model.addAttribute("mostBooked1", mostBookedTrips.subList(0, 3));
-            model.addAttribute("mostBooked2", mostBookedTrips.subList(3, mostBookedTrips.size()));
-            model.addAttribute("randomTrips1", randomTrips.subList(0, 3));
-            model.addAttribute("randomTrips2", randomTrips.subList(3, randomTrips.size()));
-        }
+        model.addAttribute("mostBookedTrips", mostBookedTrips);
+        model.addAttribute("randomTrips", randomTrips);
 
         if (country != null) {
             List<TripCardDTO> foundResults = this.tripService.getTripsForCountry(country);
