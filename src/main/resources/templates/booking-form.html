@@ -20,31 +20,32 @@
 <section class="main">
     <div class="page-wrapper">
         <div th:replace="fragments/navigation"></div>
+        <div class="content">
+            <form
+                    th:action="@{/booking/trip/} + ${tripId}"
+                    th:method="post"
+                    th:object="${bookingCreateDTO}"
+                    class="basic-form">
+                <label class="input-label">
+                    <input
+                            th:field="*{phoneNumber}"
+                            id="phoneNumber"
+                            name="phoneNumber"
+                            type="text"
+                            class="form-input"
+                            placeholder="Phone Number *" />
+                    <p th:each="err : ${#fields.errors('phoneNumber')}" th:text="${err}" class="err-label" />
+                </label>
 
-        <form
-                th:action="@{/booking/trip/} + ${tripId}"
-                th:method="post"
-                th:object="${bookingCreateDTO}"
-                class="basic-form">
-            <label class="input-label">
-                <input
-                        th:field="*{phoneNumber}"
-                        id="phoneNumber"
-                        name="phoneNumber"
-                        type="text"
-                        class="form-input"
-                        placeholder="Phone Number *" />
-                <p th:each="err : ${#fields.errors('phoneNumber')}" th:text="${err}" class="err-label" />
-            </label>
+                <label class="input-label">
+                    <textarea th:field="*{comment}" name="comment" class="form-input" placeholder="Additional comment by client"></textarea>
+                </label>
 
-            <label class="input-label">
-                <textarea th:field="*{comment}" name="comment" class="form-input" placeholder="Additional comment by client"></textarea>
-            </label>
-
-            <label class="input-label">
-                <button class="submit-btn" type="submit">Payment</button>
-            </label>
-        </form>
+                <label class="input-label">
+                    <button class="submit-btn" type="submit">Payment</button>
+                </label>
+            </form>
+        </div>
 
         <div th:replace="fragments/footer"></div>
     </div>

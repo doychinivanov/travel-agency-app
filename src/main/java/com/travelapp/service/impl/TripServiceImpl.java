@@ -85,7 +85,7 @@ public class TripServiceImpl implements TripService {
     @Override
     public void deleteTrip(long id) throws Exception {
         Trip trip = getTripEntity(id);
-        this.s3Service.deleteFileFromS3(trip.getImg());
+//        this.s3Service.deleteFileFromS3(trip.getImg());
         this.tripRepository.delete(trip);
         this.countryService.deleteCountryIfNoTrips(trip.getCountry());
     }
