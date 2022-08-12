@@ -27,21 +27,24 @@ public class GlobalErrorHandler {
     }
 
     @ExceptionHandler({RuntimeException.class})
-    public ModelAndView handleErrors(RuntimeException noHandlerFoundException) {
+    public ModelAndView handleErrors(RuntimeException runtimeException) {
+        System.out.println(runtimeException.getMessage());
         ModelAndView modelAndView = new ModelAndView("global-err");
 
         return modelAndView;
     }
 
     @ExceptionHandler({NullPointerException.class})
-    public ModelAndView handleErrors(NullPointerException noHandlerFoundException) {
+    public ModelAndView handleErrors(NullPointerException nullPointerException) {
+        System.out.println(nullPointerException.getMessage());
         ModelAndView modelAndView = new ModelAndView("global-err");
 
         return modelAndView;
     }
 
     @ExceptionHandler({HttpClientErrorException.NotFound.class})
-    public ModelAndView handleErrors(HttpClientErrorException noHandlerFoundException) {
+    public ModelAndView handleErrors(HttpClientErrorException httpClientErrorException) {
+        System.out.println(httpClientErrorException.getMessage());
         ModelAndView modelAndView = new ModelAndView("global-err");
 
         return modelAndView;
