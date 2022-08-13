@@ -1,5 +1,4 @@
 # Travel agency app
-<a href="http://travelagencyapp-env.eba-xqv99dmp.us-east-2.elasticbeanstalk.com/" > SEE APP HERE </a>
 
 ## App overveiw
 The app is a Spring Boot software application prototype for a travel company. The home page provides two carousels, one shows the most booked trips and the second the ones that
